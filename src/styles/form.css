@@ -1,0 +1,498 @@
+/* ==========================================
+   STAGE 5: ENHANCED MODALS & FORMS
+   ========================================== */
+
+/* Modal Enhancements */
+.modal-backdrop.show {
+  backdrop-filter: blur(4px);
+}
+
+.modal.fade .modal-dialog {
+  transform: scale(0.9) translateY(-50px);
+  opacity: 0;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.modal.show .modal-dialog {
+  transform: scale(1) translateY(0);
+  opacity: 1;
+}
+
+/* Modal Header Enhanced */
+.modal-header {
+  background: var(--bg-secondary);
+  border-bottom: 2px solid var(--border-color);
+  padding: 1.5rem;
+}
+
+.modal-title {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.modal-title i {
+  width: 2.5rem;
+  height: 2.5rem;
+  background: var(--primary-light);
+  color: var(--primary-color);
+  border-radius: var(--radius-lg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.25rem;
+}
+
+
+/* Modal Body Enhanced */
+.modal-body {
+  padding: 1.5rem;
+  background: var(--bg-primary);
+}
+
+/* Form Groups */
+.form-group {
+  margin-bottom: 1.25rem;
+}
+
+.form-group:last-child {
+  margin-bottom: 0;
+}
+
+/* Form Labels Enhanced */
+.form-label {
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 0.5rem;
+  font-size: 0.9375rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.form-label i {
+  color: var(--text-secondary);
+  font-size: 1rem;
+}
+
+.form-label .text-danger {
+  color: var(--danger);
+  margin-left: 0.25rem;
+}
+
+/* Form Controls Enhanced */
+.form-control,
+.form-select {
+  border-radius: var(--radius-md);
+  border: 2px solid var(--border-color);
+  padding: 0.75rem 1rem;
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  transition: all var(--transition-fast);
+  font-size: 0.9375rem;
+}
+
+.form-control:focus,
+.form-select:focus {
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 3px var(--primary-light);
+  background: var(--bg-primary);
+  outline: none;
+}
+
+.form-control::placeholder {
+  color: var(--text-tertiary);
+}
+
+/* Textarea */
+textarea.form-control {
+  resize: vertical;
+  min-height: 100px;
+}
+
+/* Form Select */
+.form-select {
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='%23666' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M2 5l6 6 6-6'/%3e%3c/svg%3e");
+  background-repeat: no-repeat;
+  background-position: right 0.75rem center;
+  background-size: 16px 12px;
+  padding-right: 2.5rem;
+}
+
+/* Input with Icon */
+.input-with-icon {
+  position: relative;
+}
+
+.input-with-icon i {
+  position: absolute;
+  left: 1rem;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--text-tertiary);
+  pointer-events: none;
+}
+
+.input-with-icon .form-control {
+  padding-left: 2.75rem;
+}
+
+/* Date Input Enhancement */
+input[type="date"].form-control,
+input[type="datetime-local"].form-control {
+  cursor: pointer;
+}
+
+/* Checkbox & Radio Custom */
+.form-check {
+  padding-left: 1.75rem;
+  margin-bottom: 0.75rem;
+}
+
+.form-check-input {
+  width: 1.25rem;
+  height: 1.25rem;
+  border: 2px solid var(--border-strong);
+  transition: all var(--transition-fast);
+  cursor: pointer;
+}
+
+.form-check-input:checked {
+  background-color: var(--primary-color);
+  border-color: var(--primary-color);
+}
+
+.form-check-input:focus {
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 3px var(--primary-light);
+}
+
+.form-check-label {
+  color: var(--text-primary);
+  font-weight: 500;
+  cursor: pointer;
+}
+
+/* Priority Radio Buttons */
+.priority-options {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.priority-option {
+  flex: 1;
+  min-width: 150px;
+}
+
+.priority-option input[type="radio"] {
+  display: none;
+}
+
+.priority-option label {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.75rem 1rem;
+  border: 2px solid var(--border-color);
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  font-weight: 600;
+  background: var(--bg-secondary);
+}
+
+.priority-option input[type="radio"]:checked + label {
+  border-color: var(--primary-color);
+  background: var(--primary-light);
+  color: var(--primary-color);
+}
+
+.priority-option.priority-high input[type="radio"]:checked + label {
+  border-color: var(--priority-high);
+  background: var(--priority-high-bg);
+  color: var(--priority-high);
+}
+
+.priority-option.priority-medium input[type="radio"]:checked + label {
+  border-color: var(--priority-medium);
+  background: var(--priority-medium-bg);
+  color: var(--priority-medium);
+}
+
+.priority-option.priority-low input[type="radio"]:checked + label {
+  border-color: var(--priority-low);
+  background: var(--priority-low-bg);
+  color: var(--priority-low);
+}
+
+.priority-option label:hover {
+  border-color: var(--border-strong);
+  background: var(--bg-tertiary);
+}
+
+/* Status Radio Buttons */
+.status-options {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.status-option {
+  flex: 1;
+  min-width: 120px;
+}
+
+.status-option input[type="radio"] {
+  display: none;
+}
+
+.status-option label {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.75rem 1rem;
+  border: 2px solid var(--border-color);
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  font-weight: 600;
+  background: var(--bg-secondary);
+}
+
+.status-option input[type="radio"]:checked + label {
+  border-color: var(--primary-color);
+  background: var(--primary-light);
+  color: var(--primary-color);
+}
+
+.status-option label:hover {
+  border-color: var(--border-strong);
+  background: var(--bg-tertiary);
+}
+
+/* Tags Input */
+.tags-input-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  padding: 0.625rem;
+  border: 2px solid var(--border-color);
+  border-radius: var(--radius-md);
+  background: var(--bg-primary);
+  min-height: 42px;
+  transition: all var(--transition-fast);
+}
+
+.tags-input-container:focus-within {
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 3px var(--primary-light);
+}
+
+.tags-input-container input {
+  border: none;
+  outline: none;
+  background: transparent;
+  flex: 1;
+  min-width: 120px;
+  padding: 0.25rem;
+  font-size: 0.9375rem;
+  color: var(--text-primary);
+}
+
+.tag-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+  padding: 0.25rem 0.625rem;
+  background: var(--accent-light);
+  color: var(--accent-color);
+  border-radius: var(--radius-md);
+  font-size: 0.875rem;
+  font-weight: 500;
+  border: 1px solid var(--accent-color);
+}
+
+.tag-item button {
+  background: none;
+  border: none;
+  color: var(--accent-color);
+  cursor: pointer;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  font-size: 1rem;
+  line-height: 1;
+  transition: color var(--transition-fast);
+}
+
+.tag-item button:hover {
+  color: var(--danger);
+}
+
+/* Subtasks Section */
+.subtasks-section {
+  background: var(--bg-secondary);
+  border: 2px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  padding: 1rem;
+}
+
+.subtask-item {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.75rem;
+  background: var(--bg-primary);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  margin-bottom: 0.5rem;
+  transition: all var(--transition-fast);
+}
+
+.subtask-item:hover {
+  border-color: var(--border-strong);
+}
+
+.subtask-item input[type="checkbox"] {
+  width: 1.25rem;
+  height: 1.25rem;
+  cursor: pointer;
+}
+
+.subtask-item input[type="text"] {
+  flex: 1;
+  border: none;
+  background: transparent;
+  padding: 0.25rem;
+  font-size: 0.9375rem;
+  color: var(--text-primary);
+}
+
+.subtask-item input[type="text"]:focus {
+  outline: none;
+  background: var(--bg-secondary);
+  border-radius: var(--radius-sm);
+}
+
+.subtask-item button {
+  padding: 0.25rem 0.5rem;
+  background: transparent;
+  border: none;
+  color: var(--text-tertiary);
+  cursor: pointer;
+  transition: color var(--transition-fast);
+}
+
+.subtask-item button:hover {
+  color: var(--danger);
+}
+
+/* Add Subtask Button */
+.add-subtask-btn {
+  width: 100%;
+  padding: 0.625rem;
+  border: 2px dashed var(--border-color);
+  background: transparent;
+  color: var(--text-secondary);
+  border-radius: var(--radius-md);
+  font-weight: 500;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.add-subtask-btn:hover {
+  border-color: var(--primary-color);
+  background: var(--primary-light);
+  color: var(--primary-color);
+}
+
+/* Modal Footer Enhanced */
+.modal-footer {
+  background: var(--bg-secondary);
+  border-top: 2px solid var(--border-color);
+  padding: 1.25rem 1.5rem;
+  display: flex;
+  gap: 0.75rem;
+  justify-content: flex-end;
+}
+
+.modal-footer .btn {
+  min-width: 100px;
+}
+
+/* Form Validation States */
+.form-control.is-invalid,
+.form-select.is-invalid {
+  border-color: var(--danger);
+}
+
+.form-control.is-invalid:focus,
+.form-select.is-invalid:focus {
+  border-color: var(--danger);
+  box-shadow: 0 0 0 3px var(--danger-bg);
+}
+
+.invalid-feedback {
+  display: block;
+  color: var(--danger);
+  font-size: 0.875rem;
+  margin-top: 0.25rem;
+  font-weight: 500;
+}
+
+.form-control.is-valid,
+.form-select.is-valid {
+  border-color: var(--success);
+}
+
+.form-control.is-valid:focus,
+.form-select.is-valid:focus {
+  border-color: var(--success);
+  box-shadow: 0 0 0 3px var(--success-bg);
+}
+
+.valid-feedback {
+  display: block;
+  color: var(--success);
+  font-size: 0.875rem;
+  margin-top: 0.25rem;
+  font-weight: 500;
+}
+
+/* Help Text */
+.form-text {
+  color: var(--text-secondary);
+  font-size: 0.875rem;
+  margin-top: 0.375rem;
+  display: block;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .modal-dialog {
+    margin: 0.5rem;
+  }
+  
+  .modal-body {
+    padding: 1.25rem;
+  }
+  
+  .priority-options,
+  .status-options {
+    flex-direction: column;
+  }
+  
+  .priority-option,
+  .status-option {
+    min-width: 100%;
+  }
+}
+

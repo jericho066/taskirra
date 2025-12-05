@@ -1,0 +1,284 @@
+/* ==========================================
+   STAGE 2: ENHANCED TASK CARDS - SIMPLE & BEAUTIFUL
+   ========================================== */
+
+/* Task Item Base Styles */
+.task-item {
+  border: 2px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  background: var(--bg-primary);
+  padding: 1.25rem;
+  margin-bottom: 0.875rem;
+  transition: all var(--transition-base);
+  position: relative;
+}
+
+.task-item:hover {
+  border-color: var(--border-strong);
+  box-shadow: var(--shadow-md);
+}
+
+/* Task Status Variations */
+.task-item.status-done {
+  opacity: 0.6;
+  background: var(--bg-secondary);
+}
+
+.task-item.status-done:hover {
+  opacity: 0.75;
+}
+
+/* Task Title */
+.task-title {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 0.5rem;
+  line-height: 1.4;
+}
+
+.task-item.status-done .task-title {
+  text-decoration: line-through;
+  color: var(--text-tertiary);
+}
+
+/* Task Description */
+.task-description {
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+  line-height: 1.5;
+  margin-bottom: 0.75rem;
+}
+
+/* Task Meta Info */
+.task-meta {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+  margin-top: 0.875rem;
+}
+
+.task-meta-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+  font-size: 0.875rem;
+  color: var(--text-secondary);
+  font-weight: 500;
+}
+
+/* Due Date Styling */
+.task-due-date {
+  padding: 0.25rem 0.625rem;
+  border-radius: var(--radius-md);
+  background: var(--bg-tertiary);
+  color: var(--text-secondary);
+  font-weight: 600;
+  font-size: 0.8125rem;
+}
+
+.task-due-date.overdue {
+  background: var(--danger-bg);
+  color: var(--danger);
+}
+
+.task-due-date.due-soon {
+  background: var(--warning-bg);
+  color: var(--warning);
+}
+
+/* Priority Badge */
+.priority-badge {
+  padding: 0.25rem 0.625rem;
+  border-radius: var(--radius-md);
+  font-weight: 600;
+  font-size: 0.75rem;
+  text-transform: capitalize;
+}
+
+.priority-badge.priority-high {
+  background: var(--priority-high-bg);
+  color: var(--priority-high);
+}
+
+.priority-badge.priority-medium {
+  background: var(--priority-medium-bg);
+  color: var(--priority-medium);
+}
+
+.priority-badge.priority-low {
+  background: var(--priority-low-bg);
+  color: var(--priority-low);
+}
+
+/* Status Badge */
+.status-badge {
+  padding: 0.25rem 0.625rem;
+  border-radius: var(--radius-md);
+  font-weight: 600;
+  font-size: 0.75rem;
+  text-transform: capitalize;
+}
+
+.status-badge.status-todo {
+  background: var(--status-todo-bg);
+  color: var(--status-todo);
+}
+
+.status-badge.status-in-progress {
+  background: var(--status-in-progress-bg);
+  color: var(--status-in-progress);
+}
+
+.status-badge.status-done {
+  background: var(--status-done-bg);
+  color: var(--status-done);
+}
+
+/* Tags */
+.task-tags {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  margin-top: 0.5rem;
+}
+
+.task-tag {
+  padding: 0.25rem 0.625rem;
+  border-radius: var(--radius-md);
+  background: var(--bg-tertiary);
+  color: var(--text-secondary);
+  font-size: 0.75rem;
+  font-weight: 500;
+  border: 1px solid var(--border-color);
+  transition: all var(--transition-fast);
+}
+
+.task-tag:hover {
+  background: var(--bg-hover);
+  border-color: var(--border-strong);
+}
+
+/* Task Actions */
+.task-actions {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: 0.875rem;
+}
+
+.task-action-btn {
+  padding: 0.375rem 0.75rem;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border-color);
+  background: transparent;
+  color: var(--text-secondary);
+  font-size: 0.875rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+}
+
+.task-action-btn:hover {
+  background: var(--bg-tertiary);
+  color: var(--text-primary);
+  border-color: var(--border-strong);
+}
+
+.task-action-btn.btn-danger:hover {
+  background: var(--danger);
+  color: white;
+  border-color: var(--danger);
+}
+
+.task-action-btn.btn-primary:hover {
+  background: var(--primary-color);
+  color: white;
+  border-color: var(--primary-color);
+}
+
+/* Checkbox Enhancement */
+.task-checkbox {
+  width: 1.25rem;
+  height: 1.25rem;
+  border: 2px solid var(--border-strong);
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: all var(--transition-base);
+  accent-color: var(--primary-color);
+}
+
+.task-checkbox:hover {
+  border-color: var(--primary-color);
+}
+
+/* Subtask Progress */
+.subtask-progress {
+  margin-top: 0.875rem;
+}
+
+.subtask-progress-bar {
+  height: 6px;
+  background: var(--bg-tertiary);
+  border-radius: var(--radius-full);
+  overflow: hidden;
+  margin-bottom: 0.375rem;
+}
+
+.subtask-progress-fill {
+  height: 100%;
+  background: var(--success);
+  border-radius: var(--radius-full);
+  transition: width var(--transition-slow);
+}
+
+.subtask-progress-text {
+  font-size: 0.75rem;
+  color: var(--text-secondary);
+  font-weight: 500;
+}
+
+/* Drag Handle */
+.drag-handle {
+  cursor: grab;
+  color: var(--text-tertiary);
+  padding: 0.25rem;
+  transition: color var(--transition-fast);
+}
+
+.drag-handle:hover {
+  color: var(--text-primary);
+}
+
+.drag-handle:active {
+  cursor: grabbing;
+}
+
+/* Empty State */
+.tasks-empty {
+  text-align: center;
+  padding: 3rem 1.5rem;
+  color: var(--text-tertiary);
+}
+
+.tasks-empty-icon {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+  opacity: 0.4;
+}
+
+.tasks-empty-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+  margin-bottom: 0.5rem;
+}
+
+.tasks-empty-text {
+  font-size: 0.9375rem;
+  color: var(--text-tertiary);
+}
+

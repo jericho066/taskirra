@@ -1,0 +1,928 @@
+/* Theme Variables */
+:root {
+  /* Light mode colors */
+  --bg-primary: #ffffff;
+  --bg-secondary: #f8f9fa;
+  --bg-tertiary: #e9ecef;
+  --text-primary: #212529;
+  --text-secondary: #6c757d;
+  --text-tertiary: #adb5bd;
+  --border-color: #dee2e6;
+  --shadow: rgba(0, 0, 0, 0.1);
+  
+  /* Brand colors */
+  --primary: #3b82f6;
+  --success: #10b981;
+  --warning: #f59e0b;
+  --danger: #ef4444;
+  
+  /* Priority colors */
+  --priority-high: #ef4444;
+  --priority-medium: #f59e0b;
+  --priority-low: #6b7280;
+  
+  /* Transitions */
+  --transition-speed: 0.2s;
+}
+
+/* Dark mode */
+body.dark-mode {
+  --bg-primary: #1a1a1a;
+  --bg-secondary: #2d2d2d;
+  --bg-tertiary: #3a3a3a;
+  --text-primary: #f8f9fa;
+  --text-secondary: #adb5bd;
+  --text-tertiary: #6c757d;
+  --border-color: #495057;
+  --shadow: rgba(0, 0, 0, 0.3);
+}
+
+/* Global Styles */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  transition: background-color var(--transition-speed), color var(--transition-speed);
+}
+
+/* Override Bootstrap defaults with theme colors */
+.bg-light {
+  background-color: var(--bg-secondary) !important;
+}
+
+.bg-white {
+  background-color: var(--bg-primary) !important;
+}
+
+.text-dark {
+  color: var(--text-primary) !important;
+}
+
+.text-muted {
+  color: var(--text-secondary) !important;
+}
+
+.border {
+  border-color: var(--border-color) !important;
+}
+
+.card {
+  background-color: var(--bg-primary);
+  border-color: var(--border-color);
+  color: var(--text-primary);
+  transition: transform var(--transition-speed), box-shadow var(--transition-speed);
+}
+
+.card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 6px var(--shadow);
+}
+
+.form-control,
+.form-select {
+  background-color: var(--bg-secondary);
+  border-color: var(--border-color);
+  color: var(--text-primary);
+}
+
+.form-control:focus,
+.form-select:focus {
+  background-color: var(--bg-secondary);
+  border-color: var(--primary);
+  color: var(--text-primary);
+}
+
+.modal-content {
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+}
+
+.btn-primary {
+  background-color: var(--primary);
+  border-color: var(--primary);
+}
+
+.btn-primary:hover {
+  background-color: #2563eb;
+  border-color: #2563eb;
+}
+
+/* Priority badges */
+.badge-priority-high {
+  background-color: var(--priority-high);
+  color: white;
+}
+
+.badge-priority-medium {
+  background-color: var(--priority-medium);
+  color: white;
+}
+
+.badge-priority-low {
+  background-color: var(--priority-low);
+  color: white;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-secondary);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--text-tertiary);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--text-secondary);
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.fade-in {
+  animation: fadeIn 0.3s ease-in;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  body {
+    font-size: 14px;
+  }
+}
+
+
+/* Drag and Drop Styles */
+.drag-handle {
+  touch-action: none;
+  transition: all 0.2s ease;
+}
+
+.drag-handle:hover {
+  transform: scale(1.1);
+}
+
+.drag-handle:active {
+  cursor: grabbing !important;
+}
+
+/* Dragging State */
+.task-list .card.dragging {
+  opacity: 0.5;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+/* Smooth transitions for cards */
+.task-list .card {
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.card.dragging {
+  box-shadow: 0 8px 20px rgba(59, 130, 246, 0.3);
+  transform: scale(1.02);
+  z-index: 1000;
+}
+
+
+
+/* Accessibility Improvements */
+
+/* Focus visible for keyboard navigation */
+*:focus-visible {
+  outline: 2px solid var(--primary);
+  outline-offset: 2px;
+}
+
+/* Skip to main content link */
+.skip-to-main {
+  position: absolute;
+  top: -40px;
+  left: 0;
+  background: var(--primary);
+  color: white;
+  padding: 8px;
+  text-decoration: none;
+  z-index: 10000;
+}
+
+.skip-to-main:focus {
+  top: 0;
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .card {
+    border: 2px solid var(--border-color);
+  }
+  
+  .btn {
+    border: 2px solid currentColor;
+  }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  
+  .fade-in {
+    animation: none;
+  }
+}
+
+/* Print styles */
+@media print {
+  .no-print {
+    display: none !important;
+  }
+  
+  .card {
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+  
+  body {
+    background: white;
+    color: black;
+  }
+}
+
+/* Better link underlines */
+a:not(.btn):not(.nav-link):not(.dropdown-item) {
+  text-decoration-thickness: 2px;
+  text-underline-offset: 2px;
+}
+
+/* Better button touch targets (minimum 44x44px) */
+.btn-sm {
+  min-height: 38px;
+  min-width: 38px;
+}
+
+/* Loading states */
+.loading {
+  pointer-events: none;
+  opacity: 0.6;
+}
+
+.loading::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 20px;
+  height: 20px;
+  margin: -10px 0 0 -10px;
+  border: 2px solid var(--primary);
+  border-top-color: transparent;
+  border-radius: 50%;
+  animation: spin 0.6s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Better selection */
+::selection {
+  background-color: var(--primary);
+  color: white;
+}
+
+/* Card hover effect improvement */
+.card {
+  will-change: transform;
+}
+
+/* Toast animation */
+.toast.show {
+  animation: slideInRight 0.3s ease-out;
+}
+
+@keyframes slideInRight {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+/* Empty state improvements */
+.empty-state-icon {
+  animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+/* Badge improvements */
+.badge {
+  font-weight: 500;
+  letter-spacing: 0.3px;
+}
+
+/* Form improvements */
+.form-control:disabled,
+.form-select:disabled {
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+/* Better checkbox styling */
+.form-check-input:checked {
+  background-color: var(--primary);
+  border-color: var(--primary);
+}
+
+.form-check-input:focus {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 0.25rem rgba(59, 130, 246, 0.25);
+}
+
+
+/* Smooth page transitions */
+.page-transition-enter {
+  opacity: 0;
+  transform: translateY(10px);
+}
+
+.page-transition-enter-active {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 0.3s, transform 0.3s;
+}
+
+/* Card stagger animation */
+.task-list .card {
+  animation: fadeInUp 0.3s ease-out backwards;
+}
+
+.task-list .card:nth-child(1) { animation-delay: 0.05s; }
+.task-list .card:nth-child(2) { animation-delay: 0.1s; }
+.task-list .card:nth-child(3) { animation-delay: 0.15s; }
+.task-list .card:nth-child(4) { animation-delay: 0.2s; }
+.task-list .card:nth-child(5) { animation-delay: 0.25s; }
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Pulse animation for new items */
+@keyframes pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+}
+
+.pulse {
+  animation: pulse 0.5s ease-in-out;
+}
+
+
+/* ==========================================
+   STAGE 10: DARK MODE POLISH
+   ========================================== */
+
+/* Smooth Theme Transition */
+body,
+.card,
+.modal-content,
+.dropdown-menu,
+.form-control,
+.form-select,
+.btn,
+.task-item,
+.stat-card,
+.sidebar-nav-item,
+.badge,
+.alert {
+  transition: background-color var(--transition-base), 
+              color var(--transition-base), 
+              border-color var(--transition-base);
+}
+
+/* Dark Mode Enhancements */
+[data-bs-theme="dark"] {
+  /* Refined Background Colors */
+  --bg-primary: #0d1117;
+  --bg-secondary: #161b22;
+  --bg-tertiary: #21262d;
+  --bg-elevated: #1c2128;
+  --bg-hover: #262c36;
+  
+  /* Better Text Contrast */
+  --text-primary: #e6edf3;
+  --text-secondary: #8b949e;
+  --text-tertiary: #6e7681;
+  
+  /* Adjusted Border Colors */
+  --border-color: #30363d;
+  --border-strong: #484f58;
+  
+  /* Enhanced Shadows for Depth */
+  --shadow-xs: 0 1px 2px 0 rgba(0, 0, 0, 0.5);
+  --shadow-sm: 0 1px 3px 0 rgba(0, 0, 0, 0.6);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.7);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.8);
+  --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.9);
+  --shadow-2xl: 0 25px 50px -12px rgba(0, 0, 0, 0.95);
+  
+  /* Brighter Primary Color for Dark Mode */
+  --primary-color: #7d8fff;
+  --primary-hover: #6c7fff;
+  --primary-light: rgba(125, 143, 255, 0.15);
+  
+  /* Adjusted Status Colors for Dark Mode */
+  --status-todo-bg: rgba(99, 102, 241, 0.15);
+  --status-in-progress-bg: rgba(245, 158, 11, 0.15);
+  --status-done-bg: rgba(16, 185, 129, 0.15);
+  
+  /* Adjusted Priority Colors for Dark Mode */
+  --priority-high-bg: rgba(239, 68, 68, 0.15);
+  --priority-medium-bg: rgba(245, 158, 11, 0.15);
+  --priority-low-bg: rgba(16, 185, 129, 0.15);
+  
+  /* Semantic Colors for Dark Mode */
+  --success: #3fb950;
+  --success-bg: rgba(63, 185, 80, 0.15);
+  --warning: #d29922;
+  --warning-bg: rgba(210, 153, 34, 0.15);
+  --danger: #f85149;
+  --danger-bg: rgba(248, 81, 73, 0.15);
+  --info: #58a6ff;
+  --info-bg: rgba(88, 166, 255, 0.15);
+  
+  /* Accent Color */
+  --accent-color: #d29922;
+  --accent-light: rgba(210, 153, 34, 0.15);
+}
+
+/* Dark Mode Card Enhancements */
+[data-bs-theme="dark"] .card {
+  background: var(--bg-secondary);
+  border-color: var(--border-color);
+}
+
+[data-bs-theme="dark"] .card:hover {
+  background: var(--bg-tertiary);
+  border-color: var(--border-strong);
+}
+
+/* Dark Mode Task Item */
+[data-bs-theme="dark"] .task-item {
+  background: var(--bg-secondary);
+  border-color: var(--border-color);
+}
+
+[data-bs-theme="dark"] .task-item:hover {
+  background: var(--bg-tertiary);
+  border-color: var(--border-strong);
+}
+
+[data-bs-theme="dark"] .task-item.status-done {
+  background: var(--bg-tertiary);
+  opacity: 0.65;
+}
+
+/* Dark Mode Buttons */
+[data-bs-theme="dark"] .btn-primary {
+  background: var(--primary-color);
+  border-color: var(--primary-color);
+  color: var(--bg-primary);
+}
+
+[data-bs-theme="dark"] .btn-primary:hover {
+  background: var(--primary-hover);
+  border-color: var(--primary-hover);
+}
+
+[data-bs-theme="dark"] .btn-outline-primary {
+  color: var(--primary-color);
+  border-color: var(--border-strong);
+}
+
+[data-bs-theme="dark"] .btn-outline-primary:hover {
+  background: var(--primary-light);
+  border-color: var(--primary-color);
+  color: var(--primary-color);
+}
+
+[data-bs-theme="dark"] .btn-outline-secondary {
+  color: var(--text-secondary);
+  border-color: var(--border-strong);
+}
+
+[data-bs-theme="dark"] .btn-outline-secondary:hover {
+  background: var(--bg-hover);
+  border-color: var(--border-strong);
+  color: var(--text-primary);
+}
+
+/* Dark Mode Forms */
+[data-bs-theme="dark"] .form-control,
+[data-bs-theme="dark"] .form-select {
+  background: var(--bg-tertiary);
+  border-color: var(--border-color);
+  color: var(--text-primary);
+}
+
+[data-bs-theme="dark"] .form-control:focus,
+[data-bs-theme="dark"] .form-select:focus {
+  background: var(--bg-secondary);
+  border-color: var(--primary-color);
+  color: var(--text-primary);
+  box-shadow: 0 0 0 3px var(--primary-light);
+}
+
+[data-bs-theme="dark"] .form-control::placeholder {
+  color: var(--text-tertiary);
+}
+
+/* Dark Mode Modal */
+[data-bs-theme="dark"] .modal-content {
+  background: var(--bg-secondary);
+  border-color: var(--border-color);
+}
+
+[data-bs-theme="dark"] .modal-header,
+[data-bs-theme="dark"] .modal-footer {
+  background: var(--bg-tertiary);
+  border-color: var(--border-color);
+}
+
+[data-bs-theme="dark"] .modal-backdrop {
+  background-color: rgba(0, 0, 0, 0.8);
+}
+
+/* Dark Mode Dropdown */
+[data-bs-theme="dark"] .dropdown-menu {
+  background: var(--bg-elevated);
+  border-color: var(--border-color);
+}
+
+[data-bs-theme="dark"] .dropdown-item {
+  color: var(--text-primary);
+}
+
+[data-bs-theme="dark"] .dropdown-item:hover {
+  background: var(--bg-hover);
+  color: var(--text-primary);
+}
+
+[data-bs-theme="dark"] .dropdown-divider {
+  border-top-color: var(--border-color);
+}
+
+/* Dark Mode Badges */
+[data-bs-theme="dark"] .badge-primary {
+  background: var(--status-todo-bg);
+  color: var(--primary-color);
+}
+
+[data-bs-theme="dark"] .badge-success {
+  background: var(--success-bg);
+  color: var(--success);
+}
+
+[data-bs-theme="dark"] .badge-warning {
+  background: var(--warning-bg);
+  color: var(--warning);
+}
+
+[data-bs-theme="dark"] .badge-danger {
+  background: var(--danger-bg);
+  color: var(--danger);
+}
+
+[data-bs-theme="dark"] .badge-info {
+  background: var(--info-bg);
+  color: var(--info);
+}
+
+/* Dark Mode Progress Bar */
+[data-bs-theme="dark"] .progress {
+  background: var(--bg-tertiary);
+}
+
+[data-bs-theme="dark"] .progress-bar {
+  background: var(--primary-color);
+}
+
+/* Dark Mode Toast */
+[data-bs-theme="dark"] .toast {
+  background: var(--bg-elevated);
+  border-color: var(--border-color);
+}
+
+[data-bs-theme="dark"] .toast-header {
+  background: var(--bg-elevated);
+  border-bottom-color: var(--border-color);
+}
+
+[data-bs-theme="dark"] .toast-body {
+  color: var(--text-primary);
+}
+
+/* Dark Mode Stat Cards */
+[data-bs-theme="dark"] .stat-card {
+  background: var(--bg-secondary);
+  border-color: var(--border-color);
+}
+
+[data-bs-theme="dark"] .stat-card:hover {
+  background: var(--bg-tertiary);
+  border-color: var(--border-strong);
+}
+
+[data-bs-theme="dark"] .stat-card.stat-total .stat-icon {
+  background: var(--primary-light);
+  color: var(--primary-color);
+}
+
+[data-bs-theme="dark"] .stat-card.stat-done .stat-icon {
+  background: var(--success-bg);
+  color: var(--success);
+}
+
+[data-bs-theme="dark"] .stat-card.stat-in-progress .stat-icon {
+  background: var(--warning-bg);
+  color: var(--warning);
+}
+
+[data-bs-theme="dark"] .stat-card.stat-todo .stat-icon {
+  background: var(--info-bg);
+  color: var(--info);
+}
+
+/* Dark Mode Sidebar */
+[data-bs-theme="dark"] .app-sidebar {
+  background: var(--bg-secondary);
+  border-right-color: var(--border-color);
+}
+
+[data-bs-theme="dark"] .sidebar-nav-item {
+  color: var(--text-secondary);
+}
+
+[data-bs-theme="dark"] .sidebar-nav-item:hover {
+  background: var(--bg-hover);
+  color: var(--text-primary);
+}
+
+[data-bs-theme="dark"] .sidebar-nav-item.active {
+  background: var(--primary-light);
+  color: var(--primary-color);
+}
+
+[data-bs-theme="dark"] .sidebar-nav-item.active::before {
+  background: var(--primary-color);
+}
+
+[data-bs-theme="dark"] .sidebar-section-title {
+  color: var(--text-tertiary);
+}
+
+/* Dark Mode Header */
+[data-bs-theme="dark"] .app-header {
+  background: var(--bg-secondary);
+  border-bottom-color: var(--border-color);
+  backdrop-filter: blur(10px) saturate(180%);
+  background: rgba(22, 27, 34, 0.8);
+}
+
+[data-bs-theme="dark"] .header-action-btn {
+  background: var(--bg-tertiary);
+  border-color: var(--border-color);
+  color: var(--text-secondary);
+}
+
+[data-bs-theme="dark"] .header-action-btn:hover {
+  background: var(--bg-hover);
+  color: var(--text-primary);
+  border-color: var(--border-strong);
+}
+
+[data-bs-theme="dark"] .header-action-btn.active {
+  background: var(--primary-color);
+  color: var(--bg-primary);
+  border-color: var(--primary-color);
+}
+
+/* Dark Mode Scrollbar */
+[data-bs-theme="dark"] ::-webkit-scrollbar-track {
+  background: var(--bg-tertiary);
+}
+
+[data-bs-theme="dark"] ::-webkit-scrollbar-thumb {
+  background: var(--border-strong);
+}
+
+[data-bs-theme="dark"] ::-webkit-scrollbar-thumb:hover {
+  background: var(--text-tertiary);
+}
+
+/* Dark Mode Empty State */
+[data-bs-theme="dark"] .empty-state-icon {
+  background: var(--bg-tertiary);
+  color: var(--text-tertiary);
+}
+
+[data-bs-theme="dark"] .empty-state-title {
+  color: var(--text-primary);
+}
+
+[data-bs-theme="dark"] .empty-state-description {
+  color: var(--text-secondary);
+}
+
+/* Dark Mode Loading */
+[data-bs-theme="dark"] .loading-spinner {
+  border-color: var(--border-color);
+  border-top-color: var(--primary-color);
+}
+
+[data-bs-theme="dark"] .skeleton {
+  background: var(--bg-tertiary);
+}
+
+[data-bs-theme="dark"] .skeleton::after {
+  background: linear-gradient(
+    90deg,
+    transparent,
+    var(--bg-hover),
+    transparent
+  );
+}
+
+/* Dark Mode Tags */
+[data-bs-theme="dark"] .task-tag {
+  background: var(--accent-light);
+  color: var(--accent-color);
+  border-color: var(--accent-color);
+}
+
+[data-bs-theme="dark"] .task-tag:hover {
+  background: var(--accent-color);
+  color: var(--bg-primary);
+}
+
+/* Dark Mode Alerts */
+[data-bs-theme="dark"] .alert {
+  background: var(--bg-tertiary);
+  border-color: var(--border-color);
+}
+
+[data-bs-theme="dark"] .alert-light {
+  background: var(--bg-tertiary);
+  color: var(--text-primary);
+  border-color: var(--border-color);
+}
+
+/* Dark Mode Code/Pre Elements */
+[data-bs-theme="dark"] code,
+[data-bs-theme="dark"] pre {
+  background: var(--bg-tertiary);
+  color: var(--text-primary);
+}
+
+/* Dark Mode Selection */
+[data-bs-theme="dark"] ::selection {
+  background: var(--primary-color);
+  color: var(--bg-primary);
+}
+
+/* Dark Mode Focus States */
+[data-bs-theme="dark"] :focus-visible {
+  outline-color: var(--primary-color);
+}
+
+[data-bs-theme="dark"] .focus-ring:focus-visible {
+  box-shadow: 0 0 0 4px var(--primary-light);
+}
+
+/* Dark Mode Link Colors */
+[data-bs-theme="dark"] a {
+  color: var(--primary-color);
+}
+
+[data-bs-theme="dark"] a:hover {
+  color: var(--primary-hover);
+}
+
+/* Dark Mode Checkbox Enhancement */
+[data-bs-theme="dark"] .form-check-input {
+  background-color: var(--bg-tertiary);
+  border-color: var(--border-strong);
+}
+
+[data-bs-theme="dark"] .form-check-input:checked {
+  background-color: var(--primary-color);
+  border-color: var(--primary-color);
+}
+
+[data-bs-theme="dark"] .form-check-input:focus {
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 3px var(--primary-light);
+}
+
+/* Dark Mode Subtle Glow Effects (Optional Enhancement) */
+[data-bs-theme="dark"] .stat-card:hover {
+  box-shadow: 0 4px 12px rgba(125, 143, 255, 0.1);
+}
+
+[data-bs-theme="dark"] .task-item:hover {
+  box-shadow: 0 4px 12px rgba(125, 143, 255, 0.08);
+}
+
+[data-bs-theme="dark"] .btn-primary {
+  box-shadow: 0 2px 8px rgba(125, 143, 255, 0.2);
+}
+
+[data-bs-theme="dark"] .btn-primary:hover {
+  box-shadow: 0 4px 12px rgba(125, 143, 255, 0.3);
+}
+
+/* Dark Mode Image/Icon Adjustments */
+[data-bs-theme="dark"] img {
+  opacity: 0.9;
+}
+
+[data-bs-theme="dark"] .app-logo-icon img {
+  opacity: 1;
+  filter: brightness(1.1);
+}
+
+/* Theme Toggle Button Enhancement */
+.header-action-btn i.bi-moon-fill,
+.header-action-btn i.bi-sun-fill {
+  transition: transform var(--transition-base);
+}
+
+.header-action-btn:hover i.bi-moon-fill {
+  transform: rotate(-20deg);
+}
+
+.header-action-btn:hover i.bi-sun-fill {
+  transform: rotate(20deg) scale(1.1);
+}
+
+/* Smooth Color Transitions on Theme Change */
+* {
+  transition-property: background-color, border-color, color, fill, stroke;
+  transition-duration: 0.2s;
+  transition-timing-function: ease-in-out;
+}
+
+/* Prevent transition on certain elements */
+.loading-spinner,
+.skeleton,
+.progress-bar,
+.animate-fade-in,
+.animate-scale-in {
+  transition-property: transform, opacity;
+}
