@@ -37,7 +37,7 @@ A fast, responsive, and feature-rich task manager built with React, Bootstrap, a
 
 ## Demo
 
-**Live Demo:** [https://taskirra.netlify.app](https://taskirra.vercel.app) 
+**Live Demo:** [https://taskirra.vercel.app](https://taskirra.vercel.app) 
 
 ## Screenshots
 
