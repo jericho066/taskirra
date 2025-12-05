@@ -1,5 +1,7 @@
 # Taskirra - Modern Task Management App
 
+<img src="src/assets/logo.png" width="300px">
+
 A fast, responsive, and feature-rich task manager built with React, Bootstrap, and modern web technologies. Perfect for managing personal tasks, projects, and daily workflows.
 
 
@@ -35,7 +37,7 @@ A fast, responsive, and feature-rich task manager built with React, Bootstrap, a
 
 ## Demo
 
-**Live Demo:** [https://taskirra.netlify.app](https://taskirra.netlify.app) 
+**Live Demo:** [https://taskirra.netlify.app](https://taskirra.vercel.app) 
 
 ## Screenshots
 
