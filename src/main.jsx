@@ -5,6 +5,7 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 import 'bootstrap/dist/js/bootstrap.bundle.min.js'
 import './styles/theme.css'
 import './styles/dashboard.css'
+import './styles/charts.css';
 import './styles/header.css'
 import './styles/card.css'
 import './styles/form.css'

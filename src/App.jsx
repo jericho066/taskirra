@@ -9,6 +9,8 @@ import { sampleTasks, sampleProjects,defaultSettings,} from './utils/sampleData'
 import { isToday, isThisWeek, isOverdue } from './utils/dateUtils';
 import ProgressBar from './components/ProgressBar';
 import DashboardStats from './components/DashboardStats';
+import TaskStatusPieChart from './components/TaskStatusPieChart';
+import WeeklyCompletionChart from './components/WeeklyCompletionChart';
 import Toast from './components/Toast';
 import { createRecurringTask, shouldGenerateNext,} from './utils/recurringTasks';
 import KeyboardShortcutsModal from './components/KeyboardShortcutsModal';
@@ -455,7 +457,7 @@ function App() {
 			<Header
 				toggleTheme={toggleTheme}
 				isDarkMode={isDarkMode}
-				onNewTask={handleNewTask}
+				// onNewTask={handleNewTask}
 				searchQuery={searchQuery}
 				setSearchQuery={setSearchQuery}
 				onExport={handleExportData}
@@ -467,18 +469,16 @@ function App() {
 			{/* Main Layout */}
 			<div className="d-flex flex-grow-1">
 				{/* Sidebar - hidden on mobile, visible on tablet+ */}
-				<div className="d-none d-md-block" style={{ width: '280px' }}>
-					<Sidebar
-						activeFilter={activeFilter}
-						setActiveFilter={setActiveFilter}
-						selectedPriority={selectedPriority}
-						setSelectedPriority={setSelectedPriority}
-						selectedTag={selectedTag}
-						setSelectedTag={setSelectedTag}
-						taskCounts={taskCounts}
-						allTags={allTags}
-					/>
-				</div>
+				<Sidebar
+					activeFilter={activeFilter}
+					setActiveFilter={setActiveFilter}
+					selectedPriority={selectedPriority}
+					setSelectedPriority={setSelectedPriority}
+					selectedTag={selectedTag}
+					setSelectedTag={setSelectedTag}
+					taskCounts={taskCounts}
+					allTags={allTags}
+				/>
 
 				{/* Main Content */}
 				<main className="flex-grow-1 p-4" id="main-content" role="main">
@@ -507,25 +507,71 @@ function App() {
 						{/* Tab Content */}
 						{activeTab === 'tasks' ? (
 							<div className="tab-content">
-								{/* Page Title */}
-								<div className="mb-4">
-									<h2 className="fw-bold mb-2">
-										{activeFilter === 'all' && 'All Tasks'}
-										{activeFilter === 'today' && "Today's Tasks"}
-										{activeFilter === 'week' && 'This Week'}
-										{activeFilter === 'overdue' && 'Overdue Tasks'}
-										{activeFilter === 'important' && 'Important Tasks'}
-										{activeFilter === 'completed' && 'Completed Tasks'}
-									</h2>
+								
+								<div className='taskHeader'>
+									{/* Page Title */}
+									<div className="mb-4">
+										<h2 className="fw-bold mb-2">
+											{activeFilter === 'all' && 'All Tasks'}
+											{activeFilter === 'today' && "Today's Tasks"}
+											{activeFilter === 'week' && 'This Week'}
+											{activeFilter === 'overdue' && 'Overdue Tasks'}
+											{activeFilter === 'important' && 'Important Tasks'}
+											{activeFilter === 'completed' && 'Completed Tasks'}
+										</h2>
 
-									<p className="text-muted mb-0">
-										{filteredTasks.length}{' '}
-										{filteredTasks.length === 1 ? 'task' : 'tasks'}
-										{searchQuery && ` matching "${searchQuery}"`}
-									</p>
+										<p className="text-muted mb-0">
+											{filteredTasks.length}{' '}
+											{filteredTasks.length === 1 ? 'task' : 'tasks'}
+											{searchQuery && ` matching "${searchQuery}"`}
+										</p>
+					
+									</div>
+
+
+									<div className='taskHeader-actions' style={{ display: 'flex', gap: '0.5rem', width: '100%', alignItems: 'center' }}>
+										{/* Search - desktop */}
+										<div className="header-search position-relative d-none d-md-block">
+											<i className="bi bi-search header-search-icon"></i>
+											<input
+												type="text"
+												className="form-control"
+												placeholder="Search tasks..."
+												value={searchQuery}
+												onChange={(e) => setSearchQuery(e.target.value)}
+												aria-label="Search tasks"
+											/>
+										</div>
+
+										{/* Search and New Task - Mobile row */}
+										<div className="d-md-none" style={{ display: 'flex', gap: '0.4rem', width: '100%', alignItems: 'center' }}>
+											{/* Search - mobile */}
+											<div className="header-search position-relative" style={{ flex: 1, margin: 0 }}>
+												<i className="bi bi-search header-search-icon"></i>
+												<input
+													type="text"
+													className="form-control"
+													placeholder="Search..."
+													value={searchQuery}
+													onChange={(e) => setSearchQuery(e.target.value)}
+													aria-label="Search tasks"
+												/>
+											</div>
+
+											{/* New Task Button - mobile */}
+											<button className="btn btn-primary ripple-effect" onClick={handleNewTask} style={{ padding: '0.3rem 0.5rem', minWidth: '2rem', height: '2rem', flexShrink: 0 }}>
+												<i className="bi bi-plus-lg"></i>
+											</button>
+										</div>
+
+										{/* New Task Button - Desktop */}
+										<button className="btn btn-primary ripple-effect d-none d-md-inline-flex" onClick={handleNewTask}>
+											<i className="bi bi-plus-lg me-1"></i> New Task
+										</button>
+									</div>									
 								</div>
 
-								
+															
 
 								{/* Quick Summary Banner */}
 								{tasks.length > 0 && (
@@ -711,11 +757,15 @@ function App() {
 								{/* Dashboard Stats */}
 								<DashboardStats tasks={tasks} />
 
-								
+								{/* Charts */}
+								<div className="charts-grid">
+									<TaskStatusPieChart tasks={tasks} />
+									<WeeklyCompletionChart tasks={tasks} />
+								</div>
 
 								{/* Task Distribution & Priority Breakdown */}
 								{tasks.length > 0 && (
-									<div className="row g-3 mb-4">
+									<div className="row g-2 mb-4">
 										<div className="col-md-6">
 											<div className="card">
 												<div className="card-body">
@@ -821,7 +871,7 @@ function App() {
 
 				{/* Sidebar Backdrop for Mobile */}
 				<div 
-					className="sidebar-backdrop d-md-none"
+					className="sidebar-backdrop "
 					onClick={() => {
 						document.querySelector('.app-sidebar')?.classList.remove('mobile-open');
 						document.querySelector('.sidebar-backdrop')?.classList.remove('show');

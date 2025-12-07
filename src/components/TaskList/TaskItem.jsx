@@ -1,9 +1,9 @@
-import React from "react"
+import React, { useState, useRef } from "react"
 import { useSortable } from '@dnd-kit/sortable'
 import { CSS } from '@dnd-kit/utilities'
 
 
-function TaskItem({ task, onToggleComplete, onEdit, onDelete, isSelected, onSelect }) {
+function TaskItem({ task, onToggleComplete, onEdit, onDelete, onSelect, isSelected }) {
 
     const {
         attributes,
@@ -33,6 +33,36 @@ function TaskItem({ task, onToggleComplete, onEdit, onDelete, isSelected, onSele
         done: <i className="bi bi-check-circle-fill"></i>
     }
 
+    // Long press / Right click selection
+    const [longPressTimer, setLongPressTimer] = useState(null);
+
+    const handleTouchStart = (e) => {
+        if (!onSelect) return;
+        
+        const timer = setTimeout(() => {
+            onSelect(task.id);
+            // Haptic feedback on mobile
+            if (navigator.vibrate) {
+                navigator.vibrate(50);
+            }
+        }, 500); // 500ms long press
+        
+        setLongPressTimer(timer);
+    };
+
+    const handleTouchEnd = () => {
+        if (longPressTimer) {
+            clearTimeout(longPressTimer);
+            setLongPressTimer(null);
+        }
+    };
+
+    const handleContextMenu = (e) => {
+        if (!onSelect) return;
+        e.preventDefault();
+        onSelect(task.id);
+    };
+
     //* to check if task is overdue
     const isOverdue = task.status !== 'done' && new Date(task.dueDate) < new Date()
 
@@ -40,7 +70,11 @@ function TaskItem({ task, onToggleComplete, onEdit, onDelete, isSelected, onSele
         <div 
             ref={setNodeRef} 
             style={style}
-            className={`task-item hover-lift priority-${task.priority} status-${task.status} ${isDragging ? 'dragging' : ''}`}
+            className={`task-item hover-lift priority-${task.priority} status-${task.status} ${isDragging ? 'dragging' : ''} ${isSelected ? 'task-selected' : ''}`}
+            onContextMenu={handleContextMenu}
+            onTouchStart={handleTouchStart}
+            onTouchEnd={handleTouchEnd}
+            onTouchCancel={handleTouchEnd}
         >
             <div className="card-body">
                 <div className="d-flex align-items-start gap-3">
@@ -69,17 +103,19 @@ function TaskItem({ task, onToggleComplete, onEdit, onDelete, isSelected, onSele
 
 
                     {/* Selection Checkbox */}
-                    {onSelect && (
-                        <div className="form-check">
-                            <input
-                                className="form-check-input"
-                                type="checkbox"
-                                checked={isSelected}
-                                onChange={() => onSelect(task.id)}
-                                onClick={(e) => e.stopPropagation()}
-                            />
-                        </div>
-                    )}
+                    {/* {onSelect && (
+                        <button
+                            className={`task-select-button ${isSelected ? 'selected' : ''}`}
+                            onClick={(e) => {
+                                e.stopPropagation();
+                                onSelect(task.id);
+                            }}
+                            title={isSelected ? 'Deselect task' : 'Select task'}
+                        >
+                            {isSelected && <i className="bi bi-check"></i>}
+                        </button>
+                    )} */}
+
 
                     {/* Checkbox */}
                     <div className="form-check">
@@ -131,7 +167,7 @@ function TaskItem({ task, onToggleComplete, onEdit, onDelete, isSelected, onSele
                                     <div
                                         className="progress-bar bg-info"
                                         style={{
-                                        width: `${(task.subtasks.filter(s => s.done).length / task.subtasks.length) * 100}%`
+                                            width: `${(task.subtasks.filter(s => s.done).length / task.subtasks.length) * 100}%`
                                         }}
                                     ></div>
                                 </div>
@@ -172,8 +208,8 @@ function TaskItem({ task, onToggleComplete, onEdit, onDelete, isSelected, onSele
                                     className="badge bg-light text-dark"
                                     style={{ cursor: 'pointer' }}
                                     onClick={(e) => {
-                                    e.stopPropagation()
-                                    onEdit(task)
+                                        e.stopPropagation()
+                                        onEdit(task)
                                     }}
                                     title="Click to view subtasks"
                                 >

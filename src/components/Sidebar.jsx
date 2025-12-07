@@ -26,6 +26,20 @@ function Sidebar({
 		{ id: 'low', label: 'Low Priority', color: 'secondary' },
 	]
 
+	// Function to close mobile sidebar
+	const closeMobileSidebar = () => {
+		if (window.innerWidth < 768) {
+			document.querySelector('.app-sidebar')?.classList.remove('mobile-open');
+			document.querySelector('.sidebar-backdrop')?.classList.remove('show');
+		}
+	};
+
+	// Update your filter click handlers
+	const handleFilterClick = (filterId) => {
+		setActiveFilter(filterId);
+		closeMobileSidebar();
+	};
+
 	return (
 		<aside className="app-sidebar" role='navigation' aria-label='Task filters and categories'>
 			{/* Navigation */}
@@ -36,7 +50,7 @@ function Sidebar({
 					<div
 						key={filter.id}
 						className={`sidebar-nav-item ${activeFilter === filter.id ? 'active' : ''}`}
-						onClick={() => setActiveFilter(filter.id)}
+						onClick={() => handleFilterClick(filter.id)}
 					>
 						<i className={`bi ${filter.icon} sidebar-nav-icon`}></i>
 						<span className="sidebar-nav-label">{filter.label}</span>

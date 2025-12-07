@@ -1,10 +1,30 @@
 import React from "react"
 import logoImage from '/src/assets/logo.png';
 
-function Header({ toggleTheme, isDarkMode, onNewTask, searchQuery, setSearchQuery, onExport, onImport, onReset, onShowShortcuts }) {
+function Header({ toggleTheme, isDarkMode,  onExport, onImport, onReset, onShowShortcuts }) {
     return (
         <header className="app-header">
             <div className="header-content">
+                {/* Mobile Menu Toggle */}
+                <button 
+                    className="mobile-menu-toggle d-md-none"
+                    onClick={() => {
+                        const sidebar = document.querySelector('.app-sidebar');
+                        const backdrop = document.querySelector('.sidebar-backdrop');
+                        
+                        if (sidebar) {
+                            sidebar.classList.toggle('mobile-open');
+                        }
+                        if (backdrop) {
+                            backdrop.classList.toggle('show');
+                        }
+                    }}
+                    aria-label="Toggle menu"
+                >
+                    <i className="bi bi-list"></i>
+                </button>
+                
+
                 {/* Logo */}
                 <a className="app-logo" href="/">
                     <div className="app-logo-icon">
@@ -13,30 +33,9 @@ function Header({ toggleTheme, isDarkMode, onNewTask, searchQuery, setSearchQuer
                     <span>Taskirra</span>
                 </a>
 
-                {/* Add Mobile Menu Toggle */}
-                <button 
-                    className="mobile-menu-toggle d-md-none"
-                    onClick={() => {
-                        document.querySelector('.app-sidebar')?.classList.toggle('mobile-open');
-                        document.querySelector('.sidebar-backdrop')?.classList.toggle('show');
-                    }}
-                    aria-label="Toggle menu"
-                >
-                    <i className="bi bi-list"></i>
-                </button>
+                
 
-                {/* Search - desktop */}
-                <div className="header-search position-relative d-none d-md-block">
-                    <i className="bi bi-search header-search-icon"></i>
-                    <input
-                        type="text"
-                        className="form-control"
-                        placeholder="Search tasks..."
-                        value={searchQuery}
-                        onChange={(e) => setSearchQuery(e.target.value)}
-                        aria-label="Search tasks"
-                    />
-                </div>
+                
 
                 {/* Header Actions */}
                 <div className="header-actions">
@@ -99,16 +98,7 @@ function Header({ toggleTheme, isDarkMode, onNewTask, searchQuery, setSearchQuer
                         {isDarkMode ? <i className="bi bi-sun-fill"></i> : <i className="bi bi-moon-fill"></i>}
                     </button>
 
-                    {/* New Task Button */}
-                    <button className="btn btn-primary ripple-effect" onClick={onNewTask}>
-                        <span className="d-none d-sm-inline">
-                            <i className="bi bi-plus-lg me-1"></i> New Task
-                        </span>
-
-                        <span className="d-sm-none">
-                            <i className="bi bi-plus-lg"></i>
-                        </span>
-                    </button>
+                    
                 </div>
             </div>
         </header>

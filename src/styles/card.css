@@ -32,13 +32,239 @@
   opacity: 0.75;
 }
 
+/* ===== MOBILE RESPONSIVE (max-width: 767px) ===== */
+@media (max-width: 767px) {
+  .task-item {
+    padding: 0.875rem;
+    margin-bottom: 0.75rem;
+  }
+
+  /* Main flex container - keep horizontal */
+  .task-item .card-body {
+    padding: 0;
+  }
+
+  .task-item .d-flex.align-items-start.gap-3 {
+    gap: 0.625rem !important;
+  }
+
+  /* Task content area */
+  .task-item .flex-grow-1 {
+    min-width: 0; /* Allow text truncation */
+  }
+
+  /* Task Title - Smaller on mobile */
+  .task-item h5,
+  .task-title {
+    font-size: 0.9375rem !important;
+    line-height: 1.3;
+    margin-bottom: 0.375rem !important;
+    font-weight: 600;
+  }
+
+  /* Task Description - Smaller on mobile */
+  .task-item .text-muted.mb-2.small,
+  .task-description {
+    font-size: 0.8125rem !important;
+    line-height: 1.4;
+    margin-bottom: 0.375rem !important;
+  }
+
+  /* Meta Info Section - Keep horizontal, allow wrap */
+  .task-item .d-flex.flex-wrap.align-items-center.gap-2 {
+    gap: 0.375rem !important;
+    flex-wrap: wrap;
+  }
+
+  /* All Badges - Smaller, compact */
+  .task-item .badge {
+    font-size: 0.6875rem !important;
+    padding: 0.1875rem 0.5rem !important;
+    white-space: nowrap;
+  }
+
+  /* Action Buttons Container - Keep horizontal */
+  .task-item .d-flex.gap-2:has(.btn) {
+    flex-direction: row !important;
+    gap: 0.375rem !important;
+  }
+
+  /* Action Buttons - Smaller but still visible */
+  .task-item .btn-sm {
+    padding: 0.375rem 0.5rem !important;
+    font-size: 0.8125rem !important;
+    min-width: auto !important;
+  }
+
+  /* Drag Handle - Smaller */
+  .task-item .drag-handle {
+    /* width: 20px !important;
+    height: 20px !important; */
+  }
+
+  .task-item .drag-handle i {
+    font-size: 0.875rem;
+  }
+
+  /* Checkbox - Slightly smaller */
+  .task-item .form-check-input.task-checkbox {
+    width: 1.125rem;
+    height: 1.125rem;
+  }
+
+  /* Subtask Progress Bar - Smaller */
+  .task-item .progress {
+    height: 3px !important;
+    margin-bottom: 0.25rem !important;
+  }
+
+  .task-item .subtask-progress {
+    margin-top: 0.5rem;
+  }
+
+  .task-item .subtask-progress .small {
+    font-size: 0.6875rem !important;
+  }
+}
+
+/* ===== VERY SMALL SCREENS (max-width: 480px) ===== */
+@media (max-width: 480px) {
+  .task-item {
+    padding: 0.75rem;
+  }
+
+  .task-item .d-flex.align-items-start.gap-3 {
+    gap: 0.5rem !important;
+  }
+
+  /* Even smaller text on very small screens */
+  .task-item h5,
+  .task-title {
+    font-size: 0.875rem !important;
+  }
+
+  .task-item .text-muted.mb-2.small,
+  .task-description {
+    font-size: 0.75rem !important;
+  }
+
+  .task-item .badge {
+    font-size: 0.625rem !important;
+    padding: 0.125rem 0.375rem !important;
+  }
+
+  /* Action buttons even more compact */
+  .task-item .btn-sm {
+    padding: 0.25rem 0.4rem !important;
+    font-size: 0.75rem !important;
+  }
+
+  .task-item .btn-sm i {
+    font-size: 0.875rem;
+  }
+}
+
+/* ===== FIX: Prevent Column Stacking ===== */
+/* Override any existing rules that force column layout */
+
+/* Keep meta info horizontal */
+.task-item .d-flex.flex-wrap.align-items-center {
+  flex-direction: row !important;
+}
+
+/* Keep action buttons horizontal */
+.task-item .d-flex.gap-2 {
+  flex-direction: row !important;
+}
+
+/* Ensure buttons don't take full width */
+.task-item .btn {
+  width: auto !important;
+}
+
+/* ===== OPTIONAL: Text Truncation for Long Titles ===== */
+@media (max-width: 767px) {
+  /* Truncate very long titles with ellipsis */
+  .task-item h5 {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2; /* Show max 2 lines */
+    -webkit-box-orient: vertical;
+  }
+
+  /* Truncate descriptions */
+  .task-item .text-muted.mb-2.small {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2; /* Show max 2 lines */
+    -webkit-box-orient: vertical;
+  }
+}
+
+/* ===== Dark Mode Compatibility ===== */
+[data-bs-theme="dark"] .task-item {
+  background: var(--bg-tertiary);
+  border-color: var(--border-color);
+}
+
+[data-bs-theme="dark"] .task-item:hover {
+  background: var(--bg-elevated);
+  border-color: var(--border-strong);
+}
+
+/* ===== Spacing Adjustments for Entire Layout ===== */
+@media (max-width: 767px) {
+  /* Reduce gaps in task list container */
+  .task-list {
+    gap: 0.5rem;
+  }
+
+  /* Page padding reduction */
+  main.flex-grow-1 {
+    padding: 1rem !important;
+  }
+
+  .container-fluid {
+    padding-left: 0.75rem !important;
+    padding-right: 0.75rem !important;
+  }
+}
+
+
+.task-item:hover {
+  border-color: var(--border-strong);
+  box-shadow: var(--shadow-md);
+}
+
+/* Task Status Variations */
+.task-item.status-done {
+  opacity: 0.6;
+  background: var(--bg-secondary);
+}
+
+.task-item.status-done:hover {
+  opacity: 0.75;
+}
+
 /* Task Title */
 .task-title {
   font-size: 1rem;
   font-weight: 600;
   color: var(--text-primary);
   margin-bottom: 0.5rem;
-  line-height: 1.4;
+  line-height: 1.3;
+  word-break: break-word;
+  overflow-wrap: break-word;
+}
+
+@media (max-width: 767px) {
+  .task-title {
+    font-size: 0.8rem;
+    margin-bottom: 0.15rem;
+    line-height: 1.15;
+  }
 }
 
 .task-item.status-done .task-title {
@@ -50,26 +276,52 @@
 .task-description {
   color: var(--text-secondary);
   font-size: 0.9rem;
-  line-height: 1.5;
-  margin-bottom: 0.75rem;
+  line-height: 1.4;
+  margin-bottom: 0.5rem;
+  word-break: break-word;
+  overflow-wrap: break-word;
+}
+
+@media (max-width: 767px) {
+  .task-description {
+    font-size: 0.7rem;
+    margin-bottom: 0.1rem;
+    line-height: 1.15;
+  }
 }
 
 /* Task Meta Info */
 .task-meta {
   display: flex;
   align-items: center;
-  gap: 0.75rem;
+  gap: 0.5rem;
   flex-wrap: wrap;
-  margin-top: 0.875rem;
+  margin-top: 0.5rem;
+}
+
+@media (max-width: 767px) {
+  .task-meta {
+    gap: 0.2rem;
+    margin-top: 0.2rem;
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: center;
+  }
 }
 
 .task-meta-item {
   display: inline-flex;
   align-items: center;
-  gap: 0.375rem;
-  font-size: 0.875rem;
+  gap: 0.3rem;
+  font-size: 0.8rem;
   color: var(--text-secondary);
   font-weight: 500;
+}
+
+@media (max-width: 767px) {
+  .task-meta-item {
+    font-size: 0.7rem;
+  }
 }
 
 /* Due Date Styling */
@@ -80,6 +332,14 @@
   color: var(--text-secondary);
   font-weight: 600;
   font-size: 0.8125rem;
+}
+
+@media (max-width: 767px) {
+  .task-due-date {
+    padding: 0.1rem 0.3rem;
+    font-size: 0.65rem;
+    white-space: nowrap;
+  }
 }
 
 .task-due-date.overdue {
@@ -99,6 +359,14 @@
   font-weight: 600;
   font-size: 0.75rem;
   text-transform: capitalize;
+}
+
+@media (max-width: 767px) {
+  .priority-badge {
+    padding: 0.1rem 0.3rem;
+    font-size: 0.6rem;
+    white-space: nowrap;
+  }
 }
 
 .priority-badge.priority-high {
@@ -124,6 +392,14 @@
   font-size: 0.75rem;
   text-transform: capitalize;
 }
+@media (max-width: 767px) {
+  .status-badge {
+    padding: 0.1rem 0.3rem;
+    font-size: 0.6rem;
+    white-space: nowrap;
+  }
+ }
+
 
 .status-badge.status-todo {
   background: var(--status-todo-bg);
@@ -148,6 +424,12 @@
   margin-top: 0.5rem;
 }
 
+@media (max-width: 767px) {
+  .task-tags {
+    gap: 0.15rem;
+  }
+}
+
 .task-tag {
   padding: 0.25rem 0.625rem;
   border-radius: var(--radius-md);
@@ -157,6 +439,14 @@
   font-weight: 500;
   border: 1px solid var(--border-color);
   transition: all var(--transition-fast);
+}
+
+@media (max-width: 767px) {
+  .task-tag {
+    padding: 0.1rem 0.25rem;
+    font-size: 0.6rem;
+    white-space: nowrap;
+  }
 }
 
 .task-tag:hover {
@@ -213,6 +503,14 @@
   cursor: pointer;
   transition: all var(--transition-base);
   accent-color: var(--primary-color);
+  flex-shrink: 0;
+}
+
+@media (max-width: 480px) {
+  .task-checkbox {
+    width: 1.1rem;
+    height: 1.1rem;
+  }
 }
 
 .task-checkbox:hover {
@@ -284,5 +582,108 @@
 .tasks-empty-text {
   font-size: 0.9375rem;
   color: var(--text-tertiary);
+}
+
+
+/* ==========================================
+   TASK SELECTION - RIGHT CLICK / LONG PRESS
+   ========================================== */
+
+/* Selected state visual feedback */
+.task-item.task-selected {
+  border-color: var(--primary-color);
+  background: var(--primary-light);
+  box-shadow: 0 0 0 3px var(--primary-light);
+}
+
+/* Selection hint on hover (optional) */
+.task-item:hover::after {
+  content: 'Right-click or long press to select';
+  position: absolute;
+  top: -2rem;
+  right: 1rem;
+  background: var(--bg-elevated);
+  color: var(--text-secondary);
+  padding: 0.25rem 0.75rem;
+  border-radius: var(--radius-md);
+  font-size: 0.75rem;
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity var(--transition-base);
+  box-shadow: var(--shadow-md);
+  z-index: 10;
+}
+
+/* Show hint only when no tasks are selected and user hovers */
+.task-item:hover::after {
+  opacity: 0.9;
+  animation: fadeInHint 0.3s ease-out 1s forwards;
+}
+
+.task-item.task-selected:hover::after {
+  content: 'Selected - Right-click to deselect';
+}
+
+/* Hide hint if any task is already selected */
+.task-list:has(.task-selected) .task-item:not(.task-selected):hover::after {
+  display: none;
+}
+
+@keyframes fadeInHint {
+  from {
+    opacity: 0;
+    transform: translateY(5px);
+  }
+  to {
+    opacity: 0.9;
+    transform: translateY(0);
+  }
+}
+
+/* Mobile: Add subtle indication during long press */
+@media (max-width: 768px) {
+  .task-item:active {
+    transform: scale(0.98);
+    transition: transform 0.1s ease-out;
+  }
+  
+  /* Don't show hover hint on mobile */
+  .task-item:hover::after {
+    display: none;
+  }
+}
+
+/* Mobile Task Item - Stack layout more efficiently */
+@media (max-width: 767px) {
+  .task-item .card-body {
+    padding: 0;
+  }
+  
+  .task-item .d-flex.align-items-start.gap-3 {
+    gap: 0.5rem !important;
+  }
+  
+  /* Hide drag handle - already in class */
+  /* Make badges smaller and inline */
+  .task-item .badge {
+    white-space: nowrap;
+  }
+}
+
+/* Disable text selection during long press */
+.task-item {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+/* Re-enable text selection for task content */
+.task-item .flex-grow-1 {
+  -webkit-user-select: text;
+  -moz-user-select: text;
+  -ms-user-select: text;
+  user-select: text;
 }
 

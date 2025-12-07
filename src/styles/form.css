@@ -2,7 +2,6 @@
 /* ==== MODALS & FORMS ===== */
 /* ========================= */
 
-
 /* Modal Enhancements */
 .modal-backdrop.show {
   backdrop-filter: blur(4px);
@@ -46,7 +45,6 @@
   justify-content: center;
   font-size: 1.25rem;
 }
-
 
 /* Modal Body Enhanced */
 .modal-body {
@@ -142,8 +140,8 @@ textarea.form-control {
 }
 
 /* Date Input Enhancement */
-input[type="date"].form-control,
-input[type="datetime-local"].form-control {
+input[type='date'].form-control,
+input[type='datetime-local'].form-control {
   cursor: pointer;
 }
 
@@ -189,7 +187,7 @@ input[type="datetime-local"].form-control {
   min-width: 150px;
 }
 
-.priority-option input[type="radio"] {
+.priority-option input[type='radio'] {
   display: none;
 }
 
@@ -206,25 +204,25 @@ input[type="datetime-local"].form-control {
   background: var(--bg-secondary);
 }
 
-.priority-option input[type="radio"]:checked + label {
+.priority-option input[type='radio']:checked + label {
   border-color: var(--primary-color);
   background: var(--primary-light);
   color: var(--primary-color);
 }
 
-.priority-option.priority-high input[type="radio"]:checked + label {
+.priority-option.priority-high input[type='radio']:checked + label {
   border-color: var(--priority-high);
   background: var(--priority-high-bg);
   color: var(--priority-high);
 }
 
-.priority-option.priority-medium input[type="radio"]:checked + label {
+.priority-option.priority-medium input[type='radio']:checked + label {
   border-color: var(--priority-medium);
   background: var(--priority-medium-bg);
   color: var(--priority-medium);
 }
 
-.priority-option.priority-low input[type="radio"]:checked + label {
+.priority-option.priority-low input[type='radio']:checked + label {
   border-color: var(--priority-low);
   background: var(--priority-low-bg);
   color: var(--priority-low);
@@ -247,7 +245,7 @@ input[type="datetime-local"].form-control {
   min-width: 120px;
 }
 
-.status-option input[type="radio"] {
+.status-option input[type='radio'] {
   display: none;
 }
 
@@ -264,7 +262,7 @@ input[type="datetime-local"].form-control {
   background: var(--bg-secondary);
 }
 
-.status-option input[type="radio"]:checked + label {
+.status-option input[type='radio']:checked + label {
   border-color: var(--primary-color);
   background: var(--primary-light);
   color: var(--primary-color);
@@ -358,13 +356,13 @@ input[type="datetime-local"].form-control {
   border-color: var(--border-strong);
 }
 
-.subtask-item input[type="checkbox"] {
+.subtask-item input[type='checkbox'] {
   width: 1.25rem;
   height: 1.25rem;
   cursor: pointer;
 }
 
-.subtask-item input[type="text"] {
+.subtask-item input[type='text'] {
   flex: 1;
   border: none;
   background: transparent;
@@ -373,7 +371,7 @@ input[type="datetime-local"].form-control {
   color: var(--text-primary);
 }
 
-.subtask-item input[type="text"]:focus {
+.subtask-item input[type='text']:focus {
   outline: none;
   background: var(--bg-secondary);
   border-radius: var(--radius-sm);
@@ -476,24 +474,440 @@ input[type="datetime-local"].form-control {
   display: block;
 }
 
-/* Responsive */
-@media (max-width: 768px) {
-  .modal-dialog {
-    margin: 0.5rem;
-  }
-  
+
+
+@media (max-width: 767px) {
+
   .modal-body {
-    padding: 1.25rem;
+    height: 75vh;
   }
   
+  /* Modal Dialog - Full screen on mobile */
+  .modal-dialog {
+    margin: 0;
+    max-width: 100%;
+    width: 100%;
+    height: 100vh;
+  }
+
+  .modal-content {
+    height: 100vh;
+    border-radius: 0;
+    border: none;
+  }
+
+  /* Modal Header - Compact */
+  .modal-header {
+    padding: 0.875rem 1rem;
+    border-bottom: 1px solid var(--border-color);
+  }
+
+  .modal-title {
+    font-size: 1rem;
+    gap: 0.5rem;
+  }
+
+  .modal-title i {
+    width: 2rem;
+    height: 2rem;
+    font-size: 1rem;
+  }
+
+  /* Close button */
+  .modal-header .btn-close {
+    padding: 0.5rem;
+    font-size: 0.875rem;
+  }
+
+  /* Modal Body - Compact padding, scrollable */
+  .modal-body {
+    padding: 1rem;
+    overflow-y: auto;
+    max-height: calc(100vh - 140px); /* Header + Footer height */
+  }
+
+  /* Modal Footer - Compact */
+  .modal-footer {
+    padding: 0.875rem 1rem;
+    gap: 0.5rem;
+  }
+
+  /* Form Groups - Reduced spacing */
+  .form-group,
+  .mb-3 {
+    margin-bottom: 0.875rem !important;
+  }
+
+  /* Form Labels - Smaller */
+  .form-label {
+    font-size: 0.8125rem;
+    margin-bottom: 0.375rem;
+    font-weight: 600;
+  }
+
+  .form-label i {
+    font-size: 0.875rem;
+  }
+
+  /* Form Controls - Smaller, readable */
+  .modal-body .form-control,
+  .modal-body .form-select {
+    padding: 0.625rem 0.75rem;
+    font-size: 0.875rem;
+    border-radius: var(--radius-md);
+  }
+
+  /* Textarea - Reduced height */
+  .modal-body textarea.form-control {
+    min-height: 80px;
+    font-size: 0.875rem;
+  }
+
+  /* Form Text / Help Text - Smaller */
+  .form-text,
+  small.form-text {
+    font-size: 0.75rem;
+    margin-top: 0.25rem;
+  }
+
+  /* Row/Column spacing */
+  .modal-body .row {
+    margin-left: -0.5rem;
+    margin-right: -0.5rem;
+  }
+
+  .modal-body .row > [class*="col-"] {
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+  }
+
+  /* Priority & Status Radio Buttons - Stack vertically */
   .priority-options,
   .status-options {
     flex-direction: column;
+    gap: 0.5rem;
   }
-  
+
   .priority-option,
   .status-option {
     min-width: 100%;
   }
+
+  .priority-option label,
+  .status-option label {
+    padding: 0.625rem 0.875rem;
+    font-size: 0.875rem;
+  }
+
+  /* Tags Input Container */
+  .tags-input-container {
+    padding: 0.5rem;
+    min-height: 38px;
+  }
+
+  .tags-input-container input {
+    font-size: 0.875rem;
+    padding: 0.25rem;
+  }
+
+  .tag-item {
+    padding: 0.1875rem 0.5rem;
+    font-size: 0.75rem;
+  }
+
+  .tag-item button {
+    font-size: 0.875rem;
+  }
+
+  /* Subtasks Section */
+  .subtasks-section {
+    padding: 0.75rem;
+    border-radius: var(--radius-md);
+  }
+
+  .subtask-list h6 {
+    font-size: 0.875rem;
+    margin-bottom: 0.625rem;
+  }
+
+  .subtask-list .bg-light.rounded {
+    padding: 0.5rem !important;
+    margin-bottom: 0.375rem !important;
+  }
+
+  .subtask-list .form-check-input {
+    width: 1rem;
+    height: 1rem;
+  }
+
+  .subtask-list span {
+    font-size: 0.875rem;
+  }
+
+  .subtask-list .btn-sm {
+    padding: 0.25rem 0.375rem;
+    font-size: 0.75rem;
+  }
+
+  /* Add Subtask Input */
+  .subtask-list .input-group {
+    margin-bottom: 0;
+  }
+
+  .subtask-list .form-control {
+    padding: 0.5rem 0.625rem;
+    font-size: 0.875rem;
+  }
+
+  .subtask-list .btn {
+    padding: 0.5rem 0.75rem;
+    font-size: 0.875rem;
+  }
+
+  /* Modal Footer Buttons */
+  .modal-footer .btn {
+    padding: 0.625rem 1rem;
+    font-size: 0.875rem;
+    min-width: auto;
+    flex: 1;
+  }
+
+  /* Make buttons stack if needed on very small screens */
+  .modal-footer {
+    flex-direction: row;
+  }
+
+  /* Checkboxes */
+  .modal-body .form-check {
+    padding-left: 1.5rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .modal-body .form-check-input {
+    width: 1rem;
+    height: 1rem;
+  }
+
+  .modal-body .form-check-label {
+    font-size: 0.875rem;
+  }
+
+  /* Recurring Task Select */
+  .modal-body select {
+    font-size: 0.875rem;
+  }
+
+  /* Invalid Feedback */
+  .invalid-feedback {
+    font-size: 0.75rem;
+  }
 }
 
+/* ===== VERY SMALL SCREENS (max-width: 480px) ===== */
+@media (max-width: 480px) {
+  
+  /* Even more compact */
+  .modal-header {
+    padding: 0.75rem 0.875rem;
+  }
+
+  .modal-title {
+    font-size: 0.9375rem;
+  }
+
+  .modal-body {
+    padding: 0.875rem;
+  }
+
+  .modal-footer {
+    padding: 0.75rem 0.875rem;
+  }
+
+  /* Form elements */
+  .form-label {
+    font-size: 0.75rem;
+  }
+
+  .modal-body .form-control,
+  .modal-body .form-select {
+    padding: 0.5rem 0.625rem;
+    font-size: 0.8125rem;
+  }
+
+  .modal-body textarea.form-control {
+    min-height: 70px;
+  }
+
+  /* Buttons */
+  .modal-footer .btn {
+    padding: 0.5rem 0.75rem;
+    font-size: 0.8125rem;
+  }
+
+  /* Form groups - even tighter */
+  .form-group,
+  .mb-3 {
+    margin-bottom: 0.75rem !important;
+  }
+
+  /* Subtasks */
+  .subtasks-section {
+    padding: 0.625rem;
+  }
+
+  .subtask-list h6 {
+    font-size: 0.8125rem;
+  }
+
+  .subtask-list .bg-light.rounded {
+    padding: 0.375rem !important;
+  }
+
+  .subtask-list span {
+    font-size: 0.8125rem;
+  }
+}
+
+/* ===== LANDSCAPE MODE (Mobile landscape) ===== */
+@media (max-width: 768px) and (orientation: landscape) {
+  .modal-dialog {
+    height: 100vh;
+  }
+
+  .modal-body {
+    max-height: calc(100vh - 120px);
+    padding: 0.75rem 1rem;
+  }
+
+  /* Tighter spacing in landscape */
+  .form-group,
+  .mb-3 {
+    margin-bottom: 0.625rem !important;
+  }
+}
+
+/* ===== ACCESSIBILITY: Ensure touch targets ===== */
+@media (max-width: 767px) {
+  /* Minimum touch target size */
+  .modal-body .form-control,
+  .modal-body .form-select,
+  .modal-body .btn {
+    min-height: 38px;
+  }
+
+  .modal-header .btn-close {
+    min-width: 38px;
+    min-height: 38px;
+  }
+}
+
+/* ===== DARK MODE COMPATIBILITY ===== */
+[data-bs-theme="dark"] .modal-content {
+  background-color: var(--bg-tertiary);
+  border-color: var(--border-color);
+}
+
+[data-bs-theme="dark"] .modal-header {
+  background: var(--bg-secondary);
+  border-bottom-color: var(--border-color);
+}
+
+[data-bs-theme="dark"] .modal-footer {
+  background: var(--bg-secondary);
+  border-top-color: var(--border-color);
+}
+
+[data-bs-theme="dark"] .modal-body {
+  background: var(--bg-tertiary);
+}
+
+/* ===== FIX: Prevent iOS zoom on input focus ===== */
+@media (max-width: 767px) {
+  .modal-body input,
+  .modal-body textarea,
+  .modal-body select {
+    font-size: 16px !important; /* Prevents iOS zoom */
+  }
+}
+
+/* ===== SCROLLBAR STYLING FOR MODAL ===== */
+@media (max-width: 767px) {
+  .modal-body::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  .modal-body::-webkit-scrollbar-track {
+    background: var(--bg-secondary);
+  }
+
+  .modal-body::-webkit-scrollbar-thumb {
+    background: var(--border-strong);
+    border-radius: 3px;
+  }
+}
+
+/* ===== ADDITIONAL SPACING FIXES ===== */
+@media (max-width: 767px) {
+  /* Remove excessive margin from last form group */
+  .modal-body .mb-3:last-child {
+    margin-bottom: 0 !important;
+  }
+
+  /* Tighter spacing for date/priority row */
+  .modal-body .row.mb-3 {
+    margin-bottom: 0.875rem !important;
+  }
+
+  /* Icon + label spacing */
+  .form-label {
+    display: flex;
+    align-items: center;
+    gap: 0.375rem;
+  }
+}
+
+/* ===== PREVENT OVERSCROLL ===== */
+@media (max-width: 767px) {
+  .modal-body {
+    overscroll-behavior: contain;
+    -webkit-overflow-scrolling: touch;
+  }
+}
+
+/* ===== BUTTON GROUP IN FOOTER ===== */
+@media (max-width: 767px) {
+  .modal-footer {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+  }
+
+  .modal-footer .btn {
+    flex: 1;
+    max-width: 48%;
+  }
+}
+
+/* ===== ULTRA SMALL SCREENS (≤375px) ===== */
+@media (max-width: 375px) {
+  .modal-header,
+  .modal-body,
+  .modal-footer {
+    padding-left: 0.75rem;
+    padding-right: 0.75rem;
+  }
+
+  .modal-title {
+    font-size: 0.875rem;
+  }
+
+  .form-label {
+    font-size: 0.6875rem;
+  }
+
+  .modal-body .form-control,
+  .modal-body .form-select {
+    font-size: 0.75rem;
+    padding: 0.4375rem 0.5rem;
+  }
+}

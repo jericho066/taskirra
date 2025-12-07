@@ -1,432 +1,7 @@
-/* Theme Variables */
-:root {
-  /* Light mode colors */
-  --bg-primary: #ffffff;
-  --bg-secondary: #f8f9fa;
-  --bg-tertiary: #e9ecef;
-  --text-primary: #212529;
-  --text-secondary: #6c757d;
-  --text-tertiary: #adb5bd;
-  --border-color: #dee2e6;
-  --shadow: rgba(0, 0, 0, 0.1);
-  
-  /* Brand colors */
-  --primary: #3b82f6;
-  --success: #10b981;
-  --warning: #f59e0b;
-  --danger: #ef4444;
-  
-  /* Priority colors */
-  --priority-high: #ef4444;
-  --priority-medium: #f59e0b;
-  --priority-low: #6b7280;
-  
-  /* Transitions */
-  --transition-speed: 0.2s;
-}
+/* ===== SMOOTH THEME TRANSITIONS ===== */
+/* Add this section near the top of your theme.css, or replace the existing transition section */
 
-/* Dark mode */
-body.dark-mode {
-  --bg-primary: #1a1a1a;
-  --bg-secondary: #2d2d2d;
-  --bg-tertiary: #3a3a3a;
-  --text-primary: #f8f9fa;
-  --text-secondary: #adb5bd;
-  --text-tertiary: #6c757d;
-  --border-color: #495057;
-  --shadow: rgba(0, 0, 0, 0.3);
-}
-
-/* Global Styles */
-* {
-  box-sizing: border-box;
-}
-
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  background-color: var(--bg-primary);
-  color: var(--text-primary);
-  transition: background-color var(--transition-speed), color var(--transition-speed);
-}
-
-/* Override Bootstrap defaults with theme colors */
-.bg-light {
-  background-color: var(--bg-secondary) !important;
-}
-
-.bg-white {
-  background-color: var(--bg-primary) !important;
-}
-
-.text-dark {
-  color: var(--text-primary) !important;
-}
-
-.text-muted {
-  color: var(--text-secondary) !important;
-}
-
-.border {
-  border-color: var(--border-color) !important;
-}
-
-.card {
-  background-color: var(--bg-primary);
-  border-color: var(--border-color);
-  color: var(--text-primary);
-  transition: transform var(--transition-speed), box-shadow var(--transition-speed);
-}
-
-.card:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 4px 6px var(--shadow);
-}
-
-.form-control,
-.form-select {
-  background-color: var(--bg-secondary);
-  border-color: var(--border-color);
-  color: var(--text-primary);
-}
-
-.form-control:focus,
-.form-select:focus {
-  background-color: var(--bg-secondary);
-  border-color: var(--primary);
-  color: var(--text-primary);
-}
-
-.modal-content {
-  background-color: var(--bg-primary);
-  color: var(--text-primary);
-}
-
-.btn-primary {
-  background-color: var(--primary);
-  border-color: var(--primary);
-}
-
-.btn-primary:hover {
-  background-color: #2563eb;
-  border-color: #2563eb;
-}
-
-/* Priority badges */
-.badge-priority-high {
-  background-color: var(--priority-high);
-  color: white;
-}
-
-.badge-priority-medium {
-  background-color: var(--priority-medium);
-  color: white;
-}
-
-.badge-priority-low {
-  background-color: var(--priority-low);
-  color: white;
-}
-
-/* Custom scrollbar */
-::-webkit-scrollbar {
-  width: 8px;
-  height: 8px;
-}
-
-::-webkit-scrollbar-track {
-  background: var(--bg-secondary);
-}
-
-::-webkit-scrollbar-thumb {
-  background: var(--text-tertiary);
-  border-radius: 4px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: var(--text-secondary);
-}
-
-/* Animations */
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(10px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-.fade-in {
-  animation: fadeIn 0.3s ease-in;
-}
-
-/* Responsive */
-@media (max-width: 768px) {
-  body {
-    font-size: 14px;
-  }
-}
-
-
-/* Drag and Drop Styles */
-.drag-handle {
-  touch-action: none;
-  transition: all 0.2s ease;
-}
-
-.drag-handle:hover {
-  transform: scale(1.1);
-}
-
-.drag-handle:active {
-  cursor: grabbing !important;
-}
-
-/* Dragging State */
-.task-list .card.dragging {
-  opacity: 0.5;
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-}
-
-/* Smooth transitions for cards */
-.task-list .card {
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
-}
-
-.card.dragging {
-  box-shadow: 0 8px 20px rgba(59, 130, 246, 0.3);
-  transform: scale(1.02);
-  z-index: 1000;
-}
-
-
-
-/* Accessibility Improvements */
-
-/* Focus visible for keyboard navigation */
-*:focus-visible {
-  outline: 2px solid var(--primary);
-  outline-offset: 2px;
-}
-
-/* Skip to main content link */
-.skip-to-main {
-  position: absolute;
-  top: -40px;
-  left: 0;
-  background: var(--primary);
-  color: white;
-  padding: 8px;
-  text-decoration: none;
-  z-index: 10000;
-}
-
-.skip-to-main:focus {
-  top: 0;
-}
-
-/* High contrast mode support */
-@media (prefers-contrast: high) {
-  .card {
-    border: 2px solid var(--border-color);
-  }
-  
-  .btn {
-    border: 2px solid currentColor;
-  }
-}
-
-/* Reduced motion support */
-@media (prefers-reduced-motion: reduce) {
-  *,
-  *::before,
-  *::after {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
-    scroll-behavior: auto !important;
-  }
-  
-  .fade-in {
-    animation: none;
-  }
-}
-
-/* Print styles */
-@media print {
-  .no-print {
-    display: none !important;
-  }
-  
-  .card {
-    break-inside: avoid;
-    page-break-inside: avoid;
-  }
-  
-  body {
-    background: white;
-    color: black;
-  }
-}
-
-/* Better link underlines */
-a:not(.btn):not(.nav-link):not(.dropdown-item) {
-  text-decoration-thickness: 2px;
-  text-underline-offset: 2px;
-}
-
-/* Better button touch targets (minimum 44x44px) */
-.btn-sm {
-  min-height: 38px;
-  min-width: 38px;
-}
-
-/* Loading states */
-.loading {
-  pointer-events: none;
-  opacity: 0.6;
-}
-
-.loading::after {
-  content: '';
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 20px;
-  height: 20px;
-  margin: -10px 0 0 -10px;
-  border: 2px solid var(--primary);
-  border-top-color: transparent;
-  border-radius: 50%;
-  animation: spin 0.6s linear infinite;
-}
-
-@keyframes spin {
-  to { transform: rotate(360deg); }
-}
-
-/* Smooth scrolling */
-html {
-  scroll-behavior: smooth;
-}
-
-/* Better selection */
-::selection {
-  background-color: var(--primary);
-  color: white;
-}
-
-/* Card hover effect improvement */
-.card {
-  will-change: transform;
-}
-
-/* Toast animation */
-.toast.show {
-  animation: slideInRight 0.3s ease-out;
-}
-
-@keyframes slideInRight {
-  from {
-    transform: translateX(100%);
-    opacity: 0;
-  }
-  to {
-    transform: translateX(0);
-    opacity: 1;
-  }
-}
-
-/* Empty state improvements */
-.empty-state-icon {
-  animation: float 3s ease-in-out infinite;
-}
-
-@keyframes float {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-10px); }
-}
-
-/* Badge improvements */
-.badge {
-  font-weight: 500;
-  letter-spacing: 0.3px;
-}
-
-/* Form improvements */
-.form-control:disabled,
-.form-select:disabled {
-  cursor: not-allowed;
-  opacity: 0.6;
-}
-
-/* Better checkbox styling */
-.form-check-input:checked {
-  background-color: var(--primary);
-  border-color: var(--primary);
-}
-
-.form-check-input:focus {
-  border-color: var(--primary);
-  box-shadow: 0 0 0 0.25rem rgba(59, 130, 246, 0.25);
-}
-
-
-/* Smooth page transitions */
-.page-transition-enter {
-  opacity: 0;
-  transform: translateY(10px);
-}
-
-.page-transition-enter-active {
-  opacity: 1;
-  transform: translateY(0);
-  transition: opacity 0.3s, transform 0.3s;
-}
-
-/* Card stagger animation */
-.task-list .card {
-  animation: fadeInUp 0.3s ease-out backwards;
-}
-
-.task-list .card:nth-child(1) { animation-delay: 0.05s; }
-.task-list .card:nth-child(2) { animation-delay: 0.1s; }
-.task-list .card:nth-child(3) { animation-delay: 0.15s; }
-.task-list .card:nth-child(4) { animation-delay: 0.2s; }
-.task-list .card:nth-child(5) { animation-delay: 0.25s; }
-
-@keyframes fadeInUp {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-/* Pulse animation for new items */
-@keyframes pulse {
-  0%, 100% { transform: scale(1); }
-  50% { transform: scale(1.05); }
-}
-
-.pulse {
-  animation: pulse 0.5s ease-in-out;
-}
-
-
-/* ==========================================
-   STAGE 10: DARK MODE POLISH
-   ========================================== */
-
-/* Smooth Theme Transition */
+/* Smooth transitions for theme switching */
 body,
 .card,
 .modal-content,
@@ -438,467 +13,102 @@ body,
 .stat-card,
 .sidebar-nav-item,
 .badge,
-.alert {
-  transition: background-color var(--transition-base), 
-              color var(--transition-base), 
-              border-color var(--transition-base);
+.alert,
+.app-sidebar,
+.app-header,
+.header-action-btn,
+.toast,
+.progress,
+input,
+textarea,
+select {
+  transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease, box-shadow 0.2s ease;
 }
 
-/* Dark Mode Enhancements */
+
+
 [data-bs-theme="dark"] {
-  /* Refined Background Colors */
-  --bg-primary: #0d1117;
-  --bg-secondary: #161b22;
-  --bg-tertiary: #21262d;
-  --bg-elevated: #1c2128;
-  --bg-hover: #262c36;
   
-  /* Better Text Contrast */
-  --text-primary: #e6edf3;
-  --text-secondary: #8b949e;
-  --text-tertiary: #6e7681;
+  --bg-primary: #1a1d29;
+  --bg-secondary: #23262f;
+  --bg-tertiary: #2a2d38;
+  --bg-elevated: #2f323d;
+  --bg-hover: #35384a;
   
-  /* Adjusted Border Colors */
-  --border-color: #30363d;
-  --border-strong: #484f58;
+  --text-primary: #e2e4e9;
+  --text-secondary: #b4b8c5;
+  --text-tertiary: #8b8f9d;
   
-  /* Enhanced Shadows for Depth */
-  --shadow-xs: 0 1px 2px 0 rgba(0, 0, 0, 0.5);
-  --shadow-sm: 0 1px 3px 0 rgba(0, 0, 0, 0.6);
-  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.7);
-  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.8);
-  --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.9);
-  --shadow-2xl: 0 25px 50px -12px rgba(0, 0, 0, 0.95);
+  --border-color: #363945;
+  --border-strong: #484b5a;
   
-  /* Brighter Primary Color for Dark Mode */
-  --primary-color: #7d8fff;
-  --primary-hover: #6c7fff;
-  --primary-light: rgba(125, 143, 255, 0.15);
+  --shadow-xs: 0 1px 2px 0 rgba(0, 0, 0, 0.4);
+  --shadow-sm: 0 1px 3px 0 rgba(0, 0, 0, 0.5);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.6);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.7);
+  --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.8);
+  --shadow-2xl: 0 25px 50px -12px rgba(0, 0, 0, 0.85);
   
-  /* Adjusted Status Colors for Dark Mode */
-  --status-todo-bg: rgba(99, 102, 241, 0.15);
-  --status-in-progress-bg: rgba(245, 158, 11, 0.15);
-  --status-done-bg: rgba(16, 185, 129, 0.15);
+  --primary-color: #818cf8;
+  --primary-hover: #a5b4fc;
+  --primary-light: rgba(129, 140, 248, 0.15);
   
-  /* Adjusted Priority Colors for Dark Mode */
-  --priority-high-bg: rgba(239, 68, 68, 0.15);
-  --priority-medium-bg: rgba(245, 158, 11, 0.15);
-  --priority-low-bg: rgba(16, 185, 129, 0.15);
+  --status-todo-bg: rgba(129, 140, 248, 0.15);
+  --status-in-progress-bg: rgba(251, 191, 36, 0.15);
+  --status-done-bg: rgba(52, 211, 153, 0.15);
   
-  /* Semantic Colors for Dark Mode */
-  --success: #3fb950;
-  --success-bg: rgba(63, 185, 80, 0.15);
-  --warning: #d29922;
-  --warning-bg: rgba(210, 153, 34, 0.15);
-  --danger: #f85149;
-  --danger-bg: rgba(248, 81, 73, 0.15);
-  --info: #58a6ff;
-  --info-bg: rgba(88, 166, 255, 0.15);
+  --priority-high-bg: rgba(248, 113, 113, 0.15);
+  --priority-medium-bg: rgba(251, 191, 36, 0.15);
+  --priority-low-bg: rgba(52, 211, 153, 0.15);
   
-  /* Accent Color */
-  --accent-color: #d29922;
-  --accent-light: rgba(210, 153, 34, 0.15);
+  --success: #34d399;
+  --success-bg: rgba(52, 211, 153, 0.15);
+  --warning: #fbbf24;
+  --warning-bg: rgba(251, 191, 36, 0.15);
+  --danger: #f87171;
+  --danger-bg: rgba(248, 113, 113, 0.15);
+  --info: #60a5fa;
+  --info-bg: rgba(96, 165, 250, 0.15);
+  
+  
+  --accent-color: #fbbf24;
+  --accent-light: rgba(251, 191, 36, 0.15);
 }
 
-/* Dark Mode Card Enhancements */
-[data-bs-theme="dark"] .card {
-  background: var(--bg-secondary);
-  border-color: var(--border-color);
-}
 
-[data-bs-theme="dark"] .card:hover {
-  background: var(--bg-tertiary);
-  border-color: var(--border-strong);
-}
 
-/* Dark Mode Task Item */
-[data-bs-theme="dark"] .task-item {
-  background: var(--bg-secondary);
-  border-color: var(--border-color);
-}
-
-[data-bs-theme="dark"] .task-item:hover {
-  background: var(--bg-tertiary);
-  border-color: var(--border-strong);
-}
-
-[data-bs-theme="dark"] .task-item.status-done {
-  background: var(--bg-tertiary);
-  opacity: 0.65;
-}
-
-/* Dark Mode Buttons */
-[data-bs-theme="dark"] .btn-primary {
-  background: var(--primary-color);
-  border-color: var(--primary-color);
-  color: var(--bg-primary);
-}
-
-[data-bs-theme="dark"] .btn-primary:hover {
-  background: var(--primary-hover);
-  border-color: var(--primary-hover);
-}
-
-[data-bs-theme="dark"] .btn-outline-primary {
-  color: var(--primary-color);
-  border-color: var(--border-strong);
-}
-
-[data-bs-theme="dark"] .btn-outline-primary:hover {
-  background: var(--primary-light);
-  border-color: var(--primary-color);
-  color: var(--primary-color);
-}
-
-[data-bs-theme="dark"] .btn-outline-secondary {
-  color: var(--text-secondary);
-  border-color: var(--border-strong);
-}
-
-[data-bs-theme="dark"] .btn-outline-secondary:hover {
-  background: var(--bg-hover);
-  border-color: var(--border-strong);
+body {
+  background-color: var(--bg-primary);
   color: var(--text-primary);
 }
 
-/* Dark Mode Forms */
-[data-bs-theme="dark"] .form-control,
-[data-bs-theme="dark"] .form-select {
-  background: var(--bg-tertiary);
-  border-color: var(--border-color);
-  color: var(--text-primary);
-}
-
-[data-bs-theme="dark"] .form-control:focus,
-[data-bs-theme="dark"] .form-select:focus {
-  background: var(--bg-secondary);
-  border-color: var(--primary-color);
-  color: var(--text-primary);
-  box-shadow: 0 0 0 3px var(--primary-light);
-}
-
-[data-bs-theme="dark"] .form-control::placeholder {
-  color: var(--text-tertiary);
-}
-
-/* Dark Mode Modal */
-[data-bs-theme="dark"] .modal-content {
-  background: var(--bg-secondary);
-  border-color: var(--border-color);
-}
-
-[data-bs-theme="dark"] .modal-header,
-[data-bs-theme="dark"] .modal-footer {
-  background: var(--bg-tertiary);
-  border-color: var(--border-color);
-}
-
-[data-bs-theme="dark"] .modal-backdrop {
-  background-color: rgba(0, 0, 0, 0.8);
-}
-
-/* Dark Mode Dropdown */
-[data-bs-theme="dark"] .dropdown-menu {
-  background: var(--bg-elevated);
-  border-color: var(--border-color);
-}
-
-[data-bs-theme="dark"] .dropdown-item {
-  color: var(--text-primary);
-}
-
-[data-bs-theme="dark"] .dropdown-item:hover {
-  background: var(--bg-hover);
-  color: var(--text-primary);
-}
-
-[data-bs-theme="dark"] .dropdown-divider {
-  border-top-color: var(--border-color);
-}
-
-/* Dark Mode Badges */
-[data-bs-theme="dark"] .badge-primary {
-  background: var(--status-todo-bg);
-  color: var(--primary-color);
-}
-
-[data-bs-theme="dark"] .badge-success {
-  background: var(--success-bg);
-  color: var(--success);
-}
-
-[data-bs-theme="dark"] .badge-warning {
-  background: var(--warning-bg);
-  color: var(--warning);
-}
-
-[data-bs-theme="dark"] .badge-danger {
-  background: var(--danger-bg);
-  color: var(--danger);
-}
-
-[data-bs-theme="dark"] .badge-info {
-  background: var(--info-bg);
-  color: var(--info);
-}
-
-/* Dark Mode Progress Bar */
-[data-bs-theme="dark"] .progress {
-  background: var(--bg-tertiary);
-}
-
-[data-bs-theme="dark"] .progress-bar {
-  background: var(--primary-color);
-}
-
-/* Dark Mode Toast */
-[data-bs-theme="dark"] .toast {
-  background: var(--bg-elevated);
-  border-color: var(--border-color);
-}
-
-[data-bs-theme="dark"] .toast-header {
-  background: var(--bg-elevated);
-  border-bottom-color: var(--border-color);
-}
-
-[data-bs-theme="dark"] .toast-body {
-  color: var(--text-primary);
-}
-
-/* Dark Mode Stat Cards */
-[data-bs-theme="dark"] .stat-card {
-  background: var(--bg-secondary);
-  border-color: var(--border-color);
-}
-
-[data-bs-theme="dark"] .stat-card:hover {
-  background: var(--bg-tertiary);
-  border-color: var(--border-strong);
-}
-
-[data-bs-theme="dark"] .stat-card.stat-total .stat-icon {
-  background: var(--primary-light);
-  color: var(--primary-color);
-}
-
-[data-bs-theme="dark"] .stat-card.stat-done .stat-icon {
-  background: var(--success-bg);
-  color: var(--success);
-}
-
-[data-bs-theme="dark"] .stat-card.stat-in-progress .stat-icon {
-  background: var(--warning-bg);
-  color: var(--warning);
-}
-
-[data-bs-theme="dark"] .stat-card.stat-todo .stat-icon {
-  background: var(--info-bg);
-  color: var(--info);
-}
-
-/* Dark Mode Sidebar */
-[data-bs-theme="dark"] .app-sidebar {
-  background: var(--bg-secondary);
+.sidebar {
+  background-color: var(--bg-secondary);
   border-right-color: var(--border-color);
 }
 
-[data-bs-theme="dark"] .sidebar-nav-item {
-  color: var(--text-secondary);
-}
-
-[data-bs-theme="dark"] .sidebar-nav-item:hover {
-  background: var(--bg-hover);
-  color: var(--text-primary);
-}
-
-[data-bs-theme="dark"] .sidebar-nav-item.active {
-  background: var(--primary-light);
-  color: var(--primary-color);
-}
-
-[data-bs-theme="dark"] .sidebar-nav-item.active::before {
-  background: var(--primary-color);
-}
-
-[data-bs-theme="dark"] .sidebar-section-title {
-  color: var(--text-tertiary);
-}
-
-/* Dark Mode Header */
-[data-bs-theme="dark"] .app-header {
-  background: var(--bg-secondary);
-  border-bottom-color: var(--border-color);
-  backdrop-filter: blur(10px) saturate(180%);
-  background: rgba(22, 27, 34, 0.8);
-}
-
-[data-bs-theme="dark"] .header-action-btn {
-  background: var(--bg-tertiary);
-  border-color: var(--border-color);
-  color: var(--text-secondary);
-}
-
-[data-bs-theme="dark"] .header-action-btn:hover {
-  background: var(--bg-hover);
-  color: var(--text-primary);
-  border-color: var(--border-strong);
-}
-
-[data-bs-theme="dark"] .header-action-btn.active {
-  background: var(--primary-color);
-  color: var(--bg-primary);
-  border-color: var(--primary-color);
-}
-
-/* Dark Mode Scrollbar */
-[data-bs-theme="dark"] ::-webkit-scrollbar-track {
-  background: var(--bg-tertiary);
-}
-
-[data-bs-theme="dark"] ::-webkit-scrollbar-thumb {
-  background: var(--border-strong);
-}
-
-[data-bs-theme="dark"] ::-webkit-scrollbar-thumb:hover {
-  background: var(--text-tertiary);
-}
-
-/* Dark Mode Empty State */
-[data-bs-theme="dark"] .empty-state-icon {
-  background: var(--bg-tertiary);
-  color: var(--text-tertiary);
-}
-
-[data-bs-theme="dark"] .empty-state-title {
-  color: var(--text-primary);
-}
-
-[data-bs-theme="dark"] .empty-state-description {
-  color: var(--text-secondary);
-}
-
-/* Dark Mode Loading */
-[data-bs-theme="dark"] .loading-spinner {
-  border-color: var(--border-color);
-  border-top-color: var(--primary-color);
-}
-
-[data-bs-theme="dark"] .skeleton {
-  background: var(--bg-tertiary);
-}
-
-[data-bs-theme="dark"] .skeleton::after {
-  background: linear-gradient(
-    90deg,
-    transparent,
-    var(--bg-hover),
-    transparent
-  );
-}
-
-/* Dark Mode Tags */
-[data-bs-theme="dark"] .task-tag {
-  background: var(--accent-light);
-  color: var(--accent-color);
-  border-color: var(--accent-color);
-}
-
-[data-bs-theme="dark"] .task-tag:hover {
-  background: var(--accent-color);
-  color: var(--bg-primary);
-}
-
-/* Dark Mode Alerts */
-[data-bs-theme="dark"] .alert {
-  background: var(--bg-tertiary);
-  border-color: var(--border-color);
-}
-
-[data-bs-theme="dark"] .alert-light {
-  background: var(--bg-tertiary);
-  color: var(--text-primary);
-  border-color: var(--border-color);
-}
-
-/* Dark Mode Code/Pre Elements */
-[data-bs-theme="dark"] code,
-[data-bs-theme="dark"] pre {
-  background: var(--bg-tertiary);
-  color: var(--text-primary);
-}
-
-/* Dark Mode Selection */
-[data-bs-theme="dark"] ::selection {
-  background: var(--primary-color);
-  color: var(--bg-primary);
-}
-
-/* Dark Mode Focus States */
-[data-bs-theme="dark"] :focus-visible {
-  outline-color: var(--primary-color);
-}
-
-[data-bs-theme="dark"] .focus-ring:focus-visible {
-  box-shadow: 0 0 0 4px var(--primary-light);
-}
-
-/* Dark Mode Link Colors */
-[data-bs-theme="dark"] a {
-  color: var(--primary-color);
-}
-
-[data-bs-theme="dark"] a:hover {
-  color: var(--primary-hover);
-}
-
-/* Dark Mode Checkbox Enhancement */
-[data-bs-theme="dark"] .form-check-input {
+/* Cards and elevated surfaces */
+.task-card,
+.card,
+.dashboard-card {
   background-color: var(--bg-tertiary);
-  border-color: var(--border-strong);
+  border-color: var(--border-color);
 }
 
-[data-bs-theme="dark"] .form-check-input:checked {
-  background-color: var(--primary-color);
-  border-color: var(--primary-color);
+.task-card:hover,
+.card:hover {
+  background-color: var(--bg-elevated);
+  border-color: var(--border-hover);
 }
 
-[data-bs-theme="dark"] .form-check-input:focus {
-  border-color: var(--primary-color);
-  box-shadow: 0 0 0 3px var(--primary-light);
+.header-action-btn {
+  transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease;
 }
 
-/* Dark Mode Subtle Glow Effects (Optional Enhancement) */
-[data-bs-theme="dark"] .stat-card:hover {
-  box-shadow: 0 4px 12px rgba(125, 143, 255, 0.1);
-}
-
-[data-bs-theme="dark"] .task-item:hover {
-  box-shadow: 0 4px 12px rgba(125, 143, 255, 0.08);
-}
-
-[data-bs-theme="dark"] .btn-primary {
-  box-shadow: 0 2px 8px rgba(125, 143, 255, 0.2);
-}
-
-[data-bs-theme="dark"] .btn-primary:hover {
-  box-shadow: 0 4px 12px rgba(125, 143, 255, 0.3);
-}
-
-/* Dark Mode Image/Icon Adjustments */
-[data-bs-theme="dark"] img {
-  opacity: 0.9;
-}
-
-[data-bs-theme="dark"] .app-logo-icon img {
-  opacity: 1;
-  filter: brightness(1.1);
-}
-
-/* Theme Toggle Button Enhancement */
 .header-action-btn i.bi-moon-fill,
 .header-action-btn i.bi-sun-fill {
-  transition: transform var(--transition-base);
+  transition: transform 0.3s ease;
+  display: inline-block;
 }
 
 .header-action-btn:hover i.bi-moon-fill {
@@ -909,18 +119,470 @@ body,
   transform: rotate(20deg) scale(1.1);
 }
 
-/* Smooth Color Transitions on Theme Change */
-* {
-  transition-property: background-color, border-color, color, fill, stroke;
-  transition-duration: 0.2s;
-  transition-timing-function: ease-in-out;
+.header-action-btn:active i.bi-moon-fill,
+.header-action-btn:active i.bi-sun-fill {
+  transform: rotate(360deg);
 }
 
-/* Prevent transition on certain elements */
-.loading-spinner,
-.skeleton,
-.progress-bar,
-.animate-fade-in,
-.animate-scale-in {
-  transition-property: transform, opacity;
+[data-bs-theme="dark"] .task-item.task-selected {
+  background: var(--bg-elevated) !important;
+  border-color: var(--primary-color) !important;
+  box-shadow: 0 0 0 2px rgba(129, 140, 248, 0.2);
+}
+
+[data-bs-theme="dark"] .task-item.task-selected:hover {
+  background: var(--bg-hover) !important;
+  border-color: var(--primary-hover) !important;
+}
+
+/* Regular task item in dark mode */
+[data-bs-theme="dark"] .task-item {
+  background: var(--bg-tertiary);
+  border-color: var(--border-color);
+}
+
+[data-bs-theme="dark"] .task-item:hover {
+  background: var(--bg-elevated);
+  border-color: var(--border-strong);
+
+}
+
+
+/* Subtask container with bg-light rounded */
+[data-bs-theme="dark"] .subtask-list .bg-light.rounded {
+  background: var(--bg-elevated) !important;
+  border: 1px solid var(--border-color);
+}
+
+[data-bs-theme="dark"] .subtask-list .bg-light.rounded:hover {
+  background: var(--bg-hover) !important;
+  border-color: var(--border-strong);
+}
+
+/* Subtask list container */
+[data-bs-theme="dark"] .subtask-list {
+  color: var(--text-primary);
+}
+
+[data-bs-theme="dark"] .subtask-list h6 {
+  color: var(--text-primary);
+}
+
+/* Subtask checkbox inside the list */
+[data-bs-theme="dark"] .subtask-list .form-check-input {
+  background-color: var(--bg-secondary);
+  border-color: var(--border-strong);
+}
+
+[data-bs-theme="dark"] .subtask-list .form-check-input:checked {
+  background-color: var(--primary-color);
+  border-color: var(--primary-color);
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3e%3cpath fill='none' stroke='%23fff' stroke-linecap='round' stroke-linejoin='round' stroke-width='3' d='m6 10 3 3 6-6'/%3e%3c/svg%3e");
+}
+
+[data-bs-theme="dark"] .subtask-list .form-check-input:focus {
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 3px rgba(129, 140, 248, 0.1);
+}
+
+/* Subtask input field - "Add a subtask..." */
+[data-bs-theme="dark"] .subtask-list input[placeholder*="subtask"] {
+  background: var(--bg-secondary);
+  border-color: var(--border-color);
+  color: var(--text-primary);
+}
+
+[data-bs-theme="dark"] .subtask-list input[placeholder*="subtask"]:focus {
+  background: var(--bg-tertiary);
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 3px rgba(129, 140, 248, 0.1);
+  color: var(--text-primary);
+}
+
+[data-bs-theme="dark"] .subtask-list input[placeholder*="subtask"]::placeholder {
+  color: var(--text-tertiary);
+}
+
+/* Completed subtask text styling */
+[data-bs-theme="dark"] .subtask-list .text-decoration-line-through {
+  color: var(--text-tertiary) !important;
+}
+
+/* Subtask delete button */
+[data-bs-theme="dark"] .subtask-list .btn-outline-danger {
+  border-color: var(--border-color);
+  color: var(--danger);
+}
+
+[data-bs-theme="dark"] .subtask-list .btn-outline-danger:hover {
+  background: rgba(248, 113, 113, 0.15);
+  border-color: var(--danger);
+  color: var(--danger);
+}
+
+/* Add subtask button */
+[data-bs-theme="dark"] .subtask-list .btn-outline-primary {
+  border-color: var(--border-color);
+  color: var(--primary-color);
+}
+
+[data-bs-theme="dark"] .subtask-list .btn-outline-primary:hover:not(:disabled) {
+  background: rgba(129, 140, 248, 0.15);
+  border-color: var(--primary-color);
+  color: var(--primary-color);
+}
+
+[data-bs-theme="dark"] .subtask-list .btn-outline-primary:disabled {
+  border-color: var(--border-color);
+  color: var(--text-tertiary);
+  opacity: 0.5;
+}
+
+/* 5. Active Filter Button Styling for Dark Mode */
+[data-bs-theme="dark"] .filter-item.active,
+[data-bs-theme="dark"] .sidebar-nav-item.active {
+  background: rgba(129, 140, 248, 0.2) !important;
+  color: var(--primary-color) !important;
+  font-weight: 500;
+}
+
+[data-bs-theme="dark"] .filter-item.active::before {
+  background: var(--primary-color);
+}
+
+/* All Tasks filter active state */
+[data-bs-theme="dark"] .filter-item.active {
+  background: linear-gradient(90deg, rgba(129, 140, 248, 0.15) 0%, rgba(129, 140, 248, 0.05) 100%) !important;
+}
+
+/* Priority and tag filters in dark mode */
+[data-bs-theme="dark"] .priority-filter-btn.active,
+[data-bs-theme="dark"] .tag-filter-btn.active {
+  background: rgba(129, 140, 248, 0.2);
+  color: var(--primary-color);
+  border-color: var(--primary-color);
+}
+
+/* 6. Modal and Edit Dialog in Dark Mode (for subtasks) */
+[data-bs-theme="dark"] .modal-body {
+  background: var(--bg-secondary);
+  color: var(--text-primary);
+}
+
+[data-bs-theme="dark"] .modal-body input,
+[data-bs-theme="dark"] .modal-body textarea,
+[data-bs-theme="dark"] .modal-body select {
+  background: var(--bg-tertiary);
+  border-color: var(--border-color);
+  color: var(--text-primary);
+}
+
+/* Subtask section in modal */
+[data-bs-theme="dark"] .subtasks-section {
+  background: var(--bg-tertiary);
+  border-color: var(--border-color);
+  border-radius: 8px;
+  padding: 1rem;
+}
+
+/* 7. Task Selection Checkbox in Dark Mode */
+[data-bs-theme="dark"] .task-checkbox,
+[data-bs-theme="dark"] .task-select-checkbox {
+  background: var(--bg-secondary);
+  border-color: var(--border-color);
+  
+}
+
+[data-bs-theme="dark"] .task-checkbox:checked,
+[data-bs-theme="dark"] .task-select-checkbox:checked {
+  background: var(--primary-color);
+  border-color: var(--primary-color);
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3e%3cpath fill='none' stroke='%23fff' stroke-linecap='round' stroke-linejoin='round' stroke-width='3' d='m6 10 3 3 6-6'/%3e%3c/svg%3e");
+}
+
+/* Bulk action bar in dark mode */
+[data-bs-theme="dark"] .bulk-action-bar {
+  background: var(--bg-tertiary);
+  border-color: var(--border-color);
+  box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.3);
+}
+
+/* 8. Additional contrast fixes */
+[data-bs-theme="dark"] .text-muted {
+  color: var(--text-secondary) !important;
+}
+
+[data-bs-theme="dark"] .border {
+  border-color: var(--border-color) !important;
+}
+
+/* 9. Drag handle in dark mode */
+[data-bs-theme="dark"] .drag-handle {
+  color: var(--text-tertiary);
+  transition: color 0.2s ease, transform 0.2s ease;
+}
+
+[data-bs-theme="dark"] .drag-handle:hover {
+  color: var(--text-secondary);
+}
+
+/* 10. Priority and status badges consistency */
+[data-bs-theme="dark"] .badge.priority-high {
+  background: var(--priority-high-bg);
+  color: var(--danger);
+  border: 1px solid rgba(248, 113, 113, 0.3);
+}
+
+[data-bs-theme="dark"] .badge.priority-medium {
+  background: var(--priority-medium-bg);
+  color: var(--warning);
+  border: 1px solid rgba(251, 191, 36, 0.3);
+}
+
+[data-bs-theme="dark"] .badge.priority-low {
+  background: var(--priority-low-bg);
+  color: var(--success);
+  border: 1px solid rgba(52, 211, 153, 0.3);
+}
+
+/* Status badges */
+[data-bs-theme="dark"] .badge.status-todo {
+  background: var(--status-todo-bg);
+  color: var(--primary-color);
+  border: 1px solid rgba(129, 140, 248, 0.3);
+}
+
+[data-bs-theme="dark"] .badge.status-in-progress {
+  background: var(--status-in-progress-bg);
+  color: var(--warning);
+  border: 1px solid rgba(251, 191, 36, 0.3);
+}
+
+[data-bs-theme="dark"] .badge.status-done {
+  background: var(--status-done-bg);
+  color: var(--success);
+  border: 1px solid rgba(52, 211, 153, 0.3);
+}
+
+
+/* Input fields - better contrast in dark mode */
+[data-bs-theme="dark"] input,
+[data-bs-theme="dark"] textarea,
+[data-bs-theme="dark"] select {
+  background-color: var(--bg-secondary);
+  border-color: var(--border-color);
+  color: var(--text-primary);
+}
+
+[data-bs-theme="dark"] input:focus,
+[data-bs-theme="dark"] textarea:focus,
+[data-bs-theme="dark"] select:focus {
+  background-color: var(--bg-tertiary);
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 3px rgba(129, 140, 248, 0.1);
+}
+
+[data-bs-theme="dark"] input::placeholder,
+[data-bs-theme="dark"] textarea::placeholder {
+  color: var(--text-tertiary);
+}
+
+/* Search input */
+[data-bs-theme="dark"] .search-input {
+  background-color: var(--bg-secondary);
+  border-color: var(--border-color);
+  color: var(--text-primary);
+}
+
+[data-bs-theme="dark"] .search-input:focus {
+  background-color: var(--bg-tertiary);
+  border-color: var(--primary-color);
+}
+
+/* Badges - adjusted for dark mode */
+[data-bs-theme="dark"] .badge {
+  background-color: var(--bg-elevated);
+  border: 1px solid var(--border-color);
+}
+
+[data-bs-theme="dark"] .badge.priority-high {
+  background-color: rgba(248, 113, 113, 0.15);
+  color: var(--danger-color);
+  border-color: rgba(248, 113, 113, 0.3);
+}
+
+[data-bs-theme="dark"] .badge.priority-medium {
+  background-color: rgba(251, 191, 36, 0.15);
+  color: var(--warning-color);
+  border-color: rgba(251, 191, 36, 0.3);
+}
+
+[data-bs-theme="dark"] .badge.priority-low {
+  background-color: rgba(129, 140, 248, 0.15);
+  color: var(--primary-color);
+  border-color: rgba(129, 140, 248, 0.3);
+}
+
+[data-bs-theme="dark"] .badge.status-todo {
+  background-color: rgba(139, 143, 157, 0.15);
+  color: var(--text-secondary);
+  border-color: var(--border-color);
+}
+
+[data-bs-theme="dark"] .badge.status-in-progress {
+  background-color: rgba(34, 211, 238, 0.15);
+  color: var(--info-color);
+  border-color: rgba(34, 211, 238, 0.3);
+}
+
+[data-bs-theme="dark"] .badge.status-done {
+  background-color: rgba(52, 211, 153, 0.15);
+  color: var(--success-color);
+  border-color: rgba(52, 211, 153, 0.3);
+}
+
+/* Tag badges */
+[data-bs-theme="dark"] .tag-badge {
+  background-color: rgba(129, 140, 248, 0.15);
+  color: var(--primary-color);
+  border: 1px solid rgba(129, 140, 248, 0.3);
+}
+
+/* Buttons - maintain visibility without being harsh */
+[data-bs-theme="dark"] .btn-primary {
+  background-color: var(--primary-color);
+  border-color: var(--primary-color);
+  color: var(--bg-primary);
+}
+
+[data-bs-theme="dark"] .btn-primary:hover {
+  background-color: var(--primary-hover);
+  border-color: var(--primary-hover);
+}
+
+[data-bs-theme="dark"] .btn-outline-primary {
+  color: var(--primary-color);
+  border-color: var(--primary-color);
+}
+
+[data-bs-theme="dark"] .btn-outline-primary:hover {
+  background-color: rgba(129, 140, 248, 0.1);
+  border-color: var(--primary-hover);
+  color: var(--primary-hover);
+}
+
+/* Modals */
+[data-bs-theme="dark"] .modal-content {
+  background-color: var(--bg-tertiary);
+  border-color: var(--border-color);
+}
+
+[data-bs-theme="dark"] .modal-header {
+  border-bottom-color: var(--border-color);
+}
+
+[data-bs-theme="dark"] .modal-footer {
+  border-top-color: var(--border-color);
+}
+
+/* Quick summary section */
+[data-bs-theme="dark"] .quick-summary {
+  background-color: var(--bg-secondary);
+  border-color: var(--border-color);
+}
+
+/* Dashboard stats cards */
+[data-bs-theme="dark"] .stat-card {
+  background-color: var(--bg-tertiary);
+  border-color: var(--border-color);
+}
+
+/* Progress bar */
+[data-bs-theme="dark"] .progress {
+  background-color: var(--bg-secondary);
+}
+
+/* Dropdown menus */
+[data-bs-theme="dark"] .dropdown-menu {
+  background-color: var(--bg-tertiary);
+  border-color: var(--border-color);
+}
+
+[data-bs-theme="dark"] .dropdown-item {
+  color: var(--text-primary);
+}
+
+[data-bs-theme="dark"] .dropdown-item:hover {
+  background-color: var(--bg-elevated);
+  color: var(--text-primary);
+}
+
+/* Filter sidebar items */
+[data-bs-theme="dark"] .filter-item {
+  color: var(--text-secondary);
+  border-radius: 8px;
+  transition: all 0.2s ease;
+}
+
+[data-bs-theme="dark"] .filter-item:hover {
+  background-color: var(--bg-elevated);
+  color: var(--text-primary);
+}
+
+[data-bs-theme="dark"] .filter-item.active {
+  background-color: rgba(129, 140, 248, 0.15);
+  color: var(--primary-color);
+}
+
+
+/* Toast notifications */
+[data-bs-theme="dark"] .toast {
+  background-color: var(--bg-tertiary);
+  border-color: var(--border-color);
+  color: var(--text-primary);
+}
+
+/* Overdue indicator - keep visible but not harsh */
+[data-bs-theme="dark"] .overdue-badge {
+  background-color: rgba(248, 113, 113, 0.2);
+  color: var(--danger-color);
+  border-color: rgba(248, 113, 113, 0.4);
+}
+
+/* Date badge */
+[data-bs-theme="dark"] .date-badge {
+  background-color: rgba(34, 211, 238, 0.15);
+  color: var(--info-color);
+  border-color: rgba(34, 211, 238, 0.3);
+}
+
+/* Checkbox custom styling */
+[data-bs-theme="dark"] input[type="checkbox"] {
+  border-color: var(--border-color);
+  background-color: var(--bg-secondary);
+}
+
+[data-bs-theme="dark"] input[type="checkbox"]:checked {
+  background-color: var(--primary-color);
+  border-color: var(--primary-color);
+}
+
+/* Settings dropdown */
+[data-bs-theme="dark"] .settings-dropdown {
+  background-color: var(--bg-tertiary);
+  border-color: var(--border-color);
+}
+
+/* Theme toggle button should be excluded from color transition */
+.theme-toggle {
+  transition: transform 0.3s ease !important;
+}
+
+/* Drag handle */
+[data-bs-theme="dark"] .drag-handle {
+  color: var(--text-tertiary);
+}
+
+[data-bs-theme="dark"] .drag-handle:hover {
+  color: var(--text-secondary);
 }
