@@ -382,13 +382,11 @@
 }
 
 
-/* ==========================================
-   INDEPENDENT SCROLLING FIX
-   ========================================== */
+/* ==== INDEPENDENT SCROLLING FIX ==== */
 
 /* Make the main layout container fill viewport height */
 .d-flex.flex-grow-1 {
-  height: calc(100vh - 73px); /* Subtract header height */
+  height: calc(100vh - 73px);
   overflow: hidden;
 }
 
@@ -692,12 +690,10 @@ main.flex-grow-1::-webkit-scrollbar-thumb:hover {
   color: var(--primary-color);
 }
 
-/* ==========================================
-   LARGE DESKTOP (min-width: 1400px)
-   ========================================== */
+
 @media (min-width: 1400px) {
   .app-sidebar {
-    width: 320px; /* Wider on large screens */
+    width: 320px; 
   }
 
   .sidebar-nav-item {
@@ -716,18 +712,14 @@ main.flex-grow-1::-webkit-scrollbar-thumb:hover {
   }
 }
 
-/* ==========================================
-   DESKTOP (992px - 1399px)
-   ========================================== */
+
 @media (max-width: 1399px) and (min-width: 992px) {
   .app-sidebar {
     width: 280px;
   }
 }
 
-/* ==========================================
-   TABLET (768px - 991px)
-   ========================================== */
+
 @media (max-width: 991px) and (min-width: 768px) {
   .app-sidebar {
     width: 240px; /* Narrower on tablets */
@@ -765,9 +757,7 @@ main.flex-grow-1::-webkit-scrollbar-thumb:hover {
   }
 }
 
-/* ==========================================
-   MOBILE (max-width: 767px)
-   ========================================== */
+
 @media (max-width: 767px) {
   .app-sidebar {
     position: fixed;
@@ -867,12 +857,10 @@ main.flex-grow-1::-webkit-scrollbar-thumb:hover {
   }
 }
 
-/* ==========================================
-   SMALL MOBILE (max-width: 480px)
-   ========================================== */
+
 @media (max-width: 480px) {
   .app-sidebar {
-    width: 260px; /* Slightly narrower */
+    width: 260px; 
   }
 
   .sidebar-nav {
@@ -907,9 +895,7 @@ main.flex-grow-1::-webkit-scrollbar-thumb:hover {
   }
 }
 
-/* ==========================================
-   VERY SMALL MOBILE (max-width: 374px)
-   ========================================== */
+
 @media (max-width: 374px) {
   .app-sidebar {
     width: 240px;
@@ -946,9 +932,7 @@ main.flex-grow-1::-webkit-scrollbar-thumb:hover {
   }
 }
 
-/* ==========================================
-   DARK MODE COMPATIBILITY
-   ========================================== */
+
 [data-bs-theme="dark"] .app-sidebar {
   background: var(--bg-secondary);
   border-right-color: var(--border-color);
@@ -981,9 +965,7 @@ main.flex-grow-1::-webkit-scrollbar-thumb:hover {
   border-color: var(--primary-color);
 }
 
-/* ==========================================
-   SCROLLBAR STYLING
-   ========================================== */
+/* ==== SCROLLBAR STYLING ==== */
 .app-sidebar::-webkit-scrollbar {
   width: 6px;
 }
@@ -1001,9 +983,6 @@ main.flex-grow-1::-webkit-scrollbar-thumb:hover {
   background: var(--text-tertiary);
 }
 
-/* ==========================================
-   ANIMATIONS
-   ========================================== */
 .sidebar-nav-item {
   position: relative;
 }
@@ -1015,17 +994,13 @@ main.flex-grow-1::-webkit-scrollbar-thumb:hover {
   transition: transform var(--transition-fast);
 }
 
-/* ==========================================
-   ACCESSIBILITY
-   ========================================== */
+
 .sidebar-nav-item:focus-visible {
   outline: 2px solid var(--primary-color);
   outline-offset: 2px;
 }
 
-/* ==========================================
-   SAFE AREA (for notched devices)
-   ========================================== */
+/* ==== SAFE AREA (for notched devices) ==== */
 @supports (padding: env(safe-area-inset-left)) {
   @media (max-width: 767px) {
     .app-sidebar {

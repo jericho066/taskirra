@@ -11,6 +11,9 @@ import './styles/card.css'
 import './styles/form.css'
 import './styles/loading.css'
 import './styles/animation.css'
+import './styles/calendar.css'
+import './styles/analytics.css'
+import './styles/projects.css'
 import './App.css'
 
 ReactDOM.createRoot(document.getElementById('root')).render(

@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect } from 'react';
 import Header from './components/Header.jsx';
 import Sidebar from './components/Sidebar.jsx';
 import TaskList from './components/TaskList/TaskList';
@@ -14,6 +14,10 @@ import WeeklyCompletionChart from './components/WeeklyCompletionChart';
 import Toast from './components/Toast';
 import { createRecurringTask, shouldGenerateNext,} from './utils/recurringTasks';
 import KeyboardShortcutsModal from './components/KeyboardShortcutsModal';
+import CalendarView from './components/CalendarView.jsx';
+import AnalyticsView from './components/AnalyticsView.jsx';
+import ProjectsView from './components/ProjectsView.jsx';
+
 
 function App() {
 	const [isDarkMode, setIsDarkMode] = useState(() => {
@@ -31,6 +35,7 @@ function App() {
 	const [searchQuery, setSearchQuery] = useState('');
 	const [selectedPriority, setSelectedPriority] = useState(null);
 	const [selectedTag, setSelectedTag] = useState(null);
+	const [selectedProject, setSelectedProject] = useState(null);
 
 	const [toast, setToast] = useState({
 		show: false,
@@ -41,7 +46,7 @@ function App() {
 	const [lastCompletedTask, setLastCompletedTask] = useState(null);
 
 	const [selectedTasks, setSelectedTasks] = useState([]);
-	const [showBulkActions, setShowBulkActions] = useState(false);
+	// const [showBulkActions, setShowBulkActions] = useState(false);
 	const [showShortcutsModal, setShowShortcutsModal] = useState(false);
 
 	const [activeTab, setActiveTab] = useState(() => {
@@ -159,6 +164,11 @@ function App() {
 						task.description.toLowerCase().includes(query)) ||
 					task.tags.some((tag) => tag.toLowerCase().includes(query))
 			);
+		}
+
+		// Apply project filter
+		if (selectedProject) {
+			filtered = filtered.filter((task) => task.projectId === selectedProject);
 		}
 
 		return filtered;
@@ -388,7 +398,7 @@ function App() {
 				}
 
 				showToast('Data imported successfully', 'success');
-			} catch (error) {
+			} catch {
 				showToast('Failed to import data. Invalid file format.', 'danger');
 			}
 		};
@@ -414,6 +424,44 @@ function App() {
 	const handleShowShortcuts = () => {
 		setShowShortcutsModal(true);
 	};
+
+
+	const handleCreateProject = (projectData) => {
+		const newProject = {
+			id: `proj-${Date.now()}`,
+			...projectData,
+			archived: false,
+			createdAt: new Date().toISOString()
+		};
+		
+		setProjects((prevProjects) => [...prevProjects, newProject]);
+		showToast('Project created successfully', 'success');
+	};
+
+	const handleUpdateProject = (projectData) => {
+		setProjects((prevProjects) =>
+			prevProjects.map((project) =>
+				project.id === projectData.id ? { ...project, ...projectData } : project
+			)
+		);
+		showToast('Project updated successfully', 'success');
+	};
+
+	const handleDeleteProject = (projectId) => {
+		// Remove project but keep tasks (they become unassigned)
+		setProjects((prevProjects) => prevProjects.filter((p) => p.id !== projectId));
+		
+		//* to remove projectId from tasks
+		setTasks((prevTasks) =>
+			prevTasks.map((task) =>
+				task.projectId === projectId ? { ...task, projectId: null } : task
+			)
+		);
+		
+		showToast('Project deleted', 'danger');
+	};
+
+
 
 	// Keyboard shortcuts hook call
 	useKeyboardShortcuts([
@@ -446,6 +494,8 @@ function App() {
 		},
 	]);
 
+
+
 	return (
 		<div className="d-flex flex-column min-vh-100">
 			{/* Skip to main content for screen readers */}
@@ -468,7 +518,7 @@ function App() {
 
 			{/* Main Layout */}
 			<div className="d-flex flex-grow-1">
-				{/* Sidebar - hidden on mobile, visible on tablet+ */}
+				{/* Sidebar */}
 				<Sidebar
 					activeFilter={activeFilter}
 					setActiveFilter={setActiveFilter}
@@ -478,6 +528,10 @@ function App() {
 					setSelectedTag={setSelectedTag}
 					taskCounts={taskCounts}
 					allTags={allTags}
+					projects={projects}
+					tasks={tasks}
+					selectedProject={selectedProject}
+					setSelectedProject={setSelectedProject} 
 				/>
 
 				{/* Main Content */}
@@ -486,7 +540,7 @@ function App() {
 						{/* Tab Navigation */}
 						<div className="tab-navigation">
 							
-
+							{/* Tasks Tab */}
 							<button
 								className={`tab-button ${activeTab === 'tasks' ? 'active' : ''}`}
 								onClick={() => setActiveTab('tasks')}
@@ -494,7 +548,26 @@ function App() {
 								<i className="bi bi-list-task"></i>
 								<span>Tasks</span>
 							</button>
+
+							<button
+								className={`tab-button ${activeTab === 'projects' ? 'active' : ''}`}
+								onClick={() => setActiveTab('projects')}
+							>
+								<i className="bi bi-folder"></i>
+								<span>Projects</span>
+							</button>
+
+							{/* Calendar Tab */}
+							<button
+								className={`tab-button ${activeTab === 'calendar' ? 'active' : ''}`}
+								onClick={() => setActiveTab('calendar')}
+							>
+								<i className="bi bi-calendar3"></i>
+								<span>Calendar</span>
+							</button>
+
 							
+							{/* Dashboard Tab */}
 							<button
 								className={`tab-button ${activeTab === 'dashboard' ? 'active' : ''}`}
 								onClick={() => setActiveTab('dashboard')}
@@ -502,7 +575,20 @@ function App() {
 								<i className="bi bi-bar-chart-fill"></i>
 								<span>Dashboard</span>
 							</button>
+
+							
+
+							<button
+								className={`tab-button ${activeTab === 'analytics' ? 'active' : ''}`}
+								onClick={() => setActiveTab('analytics')}
+							>
+								<i className="bi bi-graph-up-arrow"></i>
+								<span>Analytics</span>
+							</button>
+
+
 						</div>
+
 
 						{/* Tab Content */}
 						{activeTab === 'tasks' ? (
@@ -708,11 +794,14 @@ function App() {
 											<div className="empty-state-icon">
 												<i className="bi bi-search"></i>
 											</div>
+
 											<h3 className="empty-state-title">No tasks found</h3>
+
 											<p className="empty-state-description">
 												No tasks match your current filters
 												{searchQuery && ` or search for "${searchQuery}"`}
 											</p>
+
 											<div className="empty-state-action">
 												<button
 													className="btn btn-outline-primary"
@@ -741,7 +830,40 @@ function App() {
 									/>
 								)}
 							</div>
-						) : (
+
+						) : activeTab === 'projects' ? (
+
+							<div className="tab-content">
+								<ProjectsView
+									projects={projects}
+									tasks={tasks}
+									onCreateProject={handleCreateProject}
+									onUpdateProject={handleUpdateProject}
+									onDeleteProject={handleDeleteProject}
+									onViewProjectTasks={(projectId) => {
+										setSelectedProject(projectId);
+										setActiveTab('tasks');
+										setActiveFilter('all');
+										setSearchQuery('');
+										setSelectedPriority(null);
+										setSelectedTag(null);
+									}}
+								/>
+							</div>
+
+						) : activeTab === 'calendar' ? (
+							
+							<div className="tab-content">
+								<CalendarView
+									tasks={tasks}
+									onEditTask={handleEdit}
+									onToggleComplete={handleToggleComplete}
+									onDeleteTask={handleDelete}
+								/>
+							</div>
+							
+						) :  activeTab === 'dashboard' ? (
+
 							<div className="tab-content">
 								{/* Dashboard Tab Content */}
 								<div className="mb-4">
@@ -865,7 +987,14 @@ function App() {
 									</div>
 								)}
 							</div>
-						)}
+
+						
+						) : activeTab ==='analytics' ? (
+							<div className="tab-content">
+								<AnalyticsView tasks={tasks} />
+							</div>
+
+						) : null}
 					</div>
 				</main>
 
@@ -885,6 +1014,7 @@ function App() {
 				onClose={handleCloseForm}
 				onSave={handleSaveTask}
 				task={editingTask}
+				projects={projects}
 			/>
 
 			{/* Toast Notifications */}

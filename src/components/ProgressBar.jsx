@@ -1,6 +1,6 @@
 import React from 'react'
 
-function ProgressBar({ tasks, filteredTasks }) {
+function ProgressBar({  filteredTasks }) {
     const totalTasks = filteredTasks.length
     const completedTasks = filteredTasks.filter(t => t.status === 'done').length
     const percentage = totalTasks > 0 ? Math.round((completedTasks / totalTasks) * 100) : 0

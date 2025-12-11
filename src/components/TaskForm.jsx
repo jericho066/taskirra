@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react"
 import SubtaskList from './SubtaskList'
 
-function TaskForm({ show, onClose, onSave, task = null }) {
+function TaskForm({ show, onClose, onSave, task = null, projects = [] }) {
     const [formData, setFormData] = useState({
         title: "",
         description: "",
@@ -251,6 +251,33 @@ function TaskForm({ show, onClose, onSave, task = null }) {
                                         <option value="todo">To Do</option>
                                         <option value="in-progress">In Progress</option>
                                         <option value="done">Done</option>
+                                    </select>
+                                </div>
+                            )}
+
+                            {/* Projects */}
+                            {projects && projects.length > 0 && (
+                                <div className="mb-3">
+                                    <label htmlFor="projectId" className="form-label">
+                                        <i className="bi bi-folder"></i>
+                                        Project
+                                    </label>
+                                    <select
+                                        className="form-select"
+                                        id="projectId"
+                                        name="projectId"
+                                        value={formData.projectId || ''}
+                                        onChange={handleChange}
+                                    >
+                                        <option value="">No Project</option>
+                                        {projects
+                                            .filter(p => !p.archived)
+                                            .map(project => (
+                                                <option key={project.id} value={project.id}>
+                                                    {project.name}
+                                                </option>
+                                            ))
+                                        }
                                     </select>
                                 </div>
                             )}

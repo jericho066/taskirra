@@ -1,7 +1,4 @@
-/* ==========================================
-   DASHBOARD CHARTS RESPONSIVE STYLES
-   Add this to your styles folder: charts.css
-   ========================================== */
+
 
 /* ===== BASE CHART CARD STYLES ===== */
 .chart-card {
@@ -77,9 +74,8 @@
   margin-bottom: 2rem;
 }
 
-/* ==========================================
-   RECHARTS CUSTOM STYLES
-   ========================================== */
+
+/* ==== RECHARTS CUSTOM STYLES ==== */
 
 /* Tooltip Styling */
 .recharts-tooltip-wrapper {
@@ -135,11 +131,8 @@
   opacity: 0.8;
 }
 
-/* ==========================================
-   RESPONSIVE BREAKPOINTS
-   ========================================== */
 
-/* ===== LARGE DESKTOP (min-width: 1400px) ===== */
+/* ===== LARGE DESKTOP  ===== */
 @media (min-width: 1400px) {
   .charts-grid {
     gap: 2rem;
@@ -162,7 +155,7 @@
   }
 }
 
-/* ===== DESKTOP (992px - 1399px) ===== */
+/* ===== DESKTOP  ===== */
 @media (max-width: 1399px) and (min-width: 992px) {
   .charts-grid {
     gap: 1.5rem;
@@ -173,10 +166,10 @@
   }
 }
 
-/* ===== TABLET (768px - 991px) ===== */
+/* ===== TABLET  ===== */
 @media (max-width: 991px) and (min-width: 768px) {
   .charts-grid {
-    grid-template-columns: 1fr; /* Stack charts vertically */
+    grid-template-columns: 1fr; 
     gap: 1.25rem;
   }
 
@@ -201,7 +194,7 @@
   }
 }
 
-/* ===== MOBILE (max-width: 767px) ===== */
+/* ===== MOBILE ===== */
 @media (max-width: 767px) {
   .charts-grid {
     grid-template-columns: 1fr; /* Single column */
@@ -311,9 +304,8 @@
   }
 }
 
-/* ==========================================
-   DARK MODE COMPATIBILITY
-   ========================================== */
+
+/* === DARK MODE COMPATIBILITY === */
 [data-bs-theme="dark"] .chart-card {
   background: var(--bg-tertiary);
   border-color: var(--border-color);
@@ -339,9 +331,7 @@
   border-color: var(--border-strong) !important;
 }
 
-/* ==========================================
-   EMPTY STATE FOR CHARTS
-   ========================================== */
+/* ==== EMPTY STATE FOR CHARTS ==== */
 .chart-empty-state {
   text-align: center;
   padding: 3rem 1.5rem;
@@ -385,9 +375,7 @@
   }
 }
 
-/* ==========================================
-   ANIMATIONS
-   ========================================== */
+
 @keyframes chartFadeIn {
   from {
     opacity: 0;
@@ -411,9 +399,7 @@
   animation-delay: 0.2s;
 }
 
-/* ==========================================
-   LOADING STATE
-   ========================================== */
+
 .chart-loading {
   display: flex;
   align-items: center;

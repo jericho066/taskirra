@@ -8,7 +8,11 @@ function Sidebar({
 	selectedTag,
 	setSelectedTag,
 	taskCounts,
-	allTags
+	allTags,
+	projects = [],  
+	tasks = [], 
+	selectedProject,
+	setSelectedProject
 }) {
 
 	const filters = [
@@ -58,6 +62,44 @@ function Sidebar({
 					</div>
 				))}
 
+
+				{/* Projects Section */}
+				<div className="sidebar-section-title">
+					Projects
+				</div>
+				{projects.filter(p => !p.archived).length > 0 ? (
+					projects.filter(p => !p.archived).map(project => {
+						const projectTaskCount = tasks.filter(
+							t => t.projectId === project.id && !t.archived
+						).length;
+						
+						return (
+							<div
+								key={project.id}
+								className={`sidebar-nav-item ${selectedProject === project.id ? 'active' : ''}`}
+								onClick={() => setSelectedProject(
+									selectedProject === project.id ? null : project.id
+								)}
+							>
+								<div 
+									className="sidebar-nav-icon"
+									style={{ 
+										width: '8px', 
+										height: '8px', 
+										borderRadius: '50%',
+										backgroundColor: project.color 
+									}}
+								></div>
+								<span className="sidebar-nav-label">{project.name}</span>
+								<span className="sidebar-nav-badge">{projectTaskCount}</span>
+							</div>
+						);
+					})
+				) : (
+					<p className="px-3 small text-muted">No projects yet</p>
+				)}
+
+
 				{/* Priority Filters */}
 				<div className="sidebar-section-title">
 					Priority
@@ -84,6 +126,8 @@ function Sidebar({
 						<span className="sidebar-nav-label">{priority.label}</span>
 					</div>
 				))}
+
+				
 
 				{/* Tags Section */}
 				<div className="sidebar-section-title">
